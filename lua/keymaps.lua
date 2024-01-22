@@ -12,7 +12,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 --vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- Telescope keymaps
+-- WhichKey keymaps
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>p', ':Telescope projects<CR>', { desc = 'Projects' })
@@ -162,8 +162,8 @@ require('which-key').register({
 
 -- [[ My LVIM which-key ]]
 vim.keymap.set('n', '<leader>;', '<cmd>Alpha<CR>', { desc = 'Dashboard' })
-vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save' })
-vim.keymap.set('n', '<leader>q', '<cmd>confirm q<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save buffer' })
+vim.keymap.set('n', '<leader>q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
 -- TODO: closes windows
 vim.keymap.set('n', '<leader>c', '<cmd>bp<bar>bd#<CR>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'ZenMode' })
@@ -207,10 +207,15 @@ vim.keymap.set('v', "<S-Right>", "<Right>")
 vim.keymap.set('n', "<Enter>", "o<Esc>")
 vim.keymap.set('n', "<S-Enter>", "O<Esc>")
 
+-- Tab indenting
+vim.keymap.set('n', "<Tab>", ">>")
+vim.keymap.set('n', "<S-Tab>", "<<")
+vim.keymap.set('v', "<Tab>", ">gv")
+vim.keymap.set('v', "<S-Tab>", "<gv")
 
--- Better indenting
-vim.keymap.set('v', "<", "<gv")
+-- Better vim style indenting
 vim.keymap.set('v', ">", ">gv")
+vim.keymap.set('v', "<", "<gv")
 
 
 -- Window movement
