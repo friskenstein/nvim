@@ -163,7 +163,8 @@ require('which-key').register({
 -- [[ My LVIM which-key ]]
 vim.keymap.set('n', '<leader>;', '<cmd>Alpha<CR>', { desc = 'Dashboard' })
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save buffer' })
-vim.keymap.set('n', '<leader>q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>Q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>q', '<cmd>confirm q<CR>', { desc = 'Close window' })
 -- TODO: closes windows
 vim.keymap.set('n', '<leader>c', '<cmd>bp<bar>bd#<CR>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'ZenMode' })
