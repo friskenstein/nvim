@@ -95,7 +95,6 @@ return {
 
 		local config = {
 		    layout = {
-				{ type = "padding", val = 2 },
 				header,
 				{ type = "padding", val = 1 },
 				buttons,

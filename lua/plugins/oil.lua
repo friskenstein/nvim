@@ -4,6 +4,7 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons", lazy=true },
 	opts = {
 		view_options = {
+			show_hidden = true,
 			is_always_hidden = function(name, bufnr)
 				return vim.startswith(name, '.DS_Store')
 			end,
