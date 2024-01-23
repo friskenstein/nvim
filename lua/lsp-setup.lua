@@ -52,29 +52,31 @@ local on_attach = function(_, bufnr)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	-- TODO: review these
-	nmap('<leader>lr', vim.lsp.buf.rename, '[R]e[n]ame')
-	nmap('<leader>lc', vim.lsp.buf.code_action, 'Code Action')
-	nmap('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-	nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-
+	-- g hotkeys
 	nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 	nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+
+	-- WhichKey
+	nmap('<leader>lR', vim.lsp.buf.rename, 'Rename')
+	nmap('<leader>la', vim.lsp.buf.code_action, 'Code Action')
+	nmap('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+	nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
 
 	-- See `:help K` for why this keymap
 	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 	--TODO: bring back
 	--nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-	-- Lesser used LSP functionality
-	nmap('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-	nmap('<leader>lwa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-	nmap('<leader>lwr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+	-- Workspace
+	nmap('<leader>lwd', require('telescope.builtin').diagnostics, 'Diagnostics ')
+	nmap('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Symbols')
+	nmap('<leader>lwa', vim.lsp.buf.add_workspace_folder, 'Add Folder')
+	nmap('<leader>lwr', vim.lsp.buf.remove_workspace_folder, 'Remove Folder')
 	nmap('<leader>lwl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, '[W]orkspace [L]ist Folders')
+	end, 'List Folders')
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)

@@ -7,18 +7,33 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic message' })
 --vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 --vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- WhichKey keymaps
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = 'Find Recent' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>p', ':Telescope projects<CR>', { desc = 'Projects' })
 vim.keymap.set('n', '<leader>W', ':ASToggle<CR>', { desc = 'Autosave' })
-vim.keymap.set('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { previewer = false, }) end, { desc = 'Current buffer fuzzy find' })
+vim.keymap.set('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { previewer = false, }) end, { desc = 'Current buffer fzf' })
 vim.keymap.set('n', '<leader>s/',  function() require('telescope.builtin').live_grep { grep_open_files = true, prompt_title = 'Grep Open Files', } end, { desc = 'Grep Open Files' })
+vim.keymap.set('n', '<leader>;', '<cmd>Alpha<CR>', { desc = 'Dashboard' })
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save buffer' })
+vim.keymap.set('n', '<leader>Q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>q', '<cmd>confirm q<CR>', { desc = 'Close window' })
+vim.keymap.set('n', '<leader>c', '<cmd>bp<bar>bd#<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'ZenMode' })
+vim.keymap.set('n', '<leader>f', function()
+	local ok = pcall(require('telescope.builtin').git_files, {})
+	if not ok then
+		require('telescope.builtin').find_files()
+	end
+end, { desc = 'Find File' })
+--   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
+--   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+--   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 
 require('which-key').register({
 	s = {
@@ -42,7 +57,7 @@ require('which-key').register({
 		l = { "<cmd>Telescope resume<cr>", "Resume last search" },
 		s = { "<cmd>Telescope<cr>", "Select Telescope" },
 	},
-	T = {
+	t = {
 		name = "TODO & Terminal",
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Floating Terminal" },
 		h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal Terminal" },
@@ -71,29 +86,50 @@ require('which-key').register({
 	},
 	g = {
 		name = 'Git',
-		-- TODO: fix the cwd
-		f = { require 'telescope.builtin'.git_files , 'Search Git Files' },
-		g = { "<cmd>lua require 'lvim.core.terminal'.lazygit_toggle()<cr>", "Lazygit" },
+
+		--INFO: already <leader>f
+		--f = { require 'telescope.builtin'.git_files , 'Search Git Files' },
+
+		--INFO: see ./plugins/gitsigns.lua for more
 		j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk", },
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)", },
-		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff", },
+
+		--TODO: HEAD or index or ~?
+		--d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff", },
+
+		g = {
+			function()
+				local Terminal = require("toggleterm.terminal").Terminal
+				local lazygit = Terminal:new {
+					cmd = "lazygit",
+					hidden = true,
+					direction = "float",
+					float_opts = {
+						border = "none",
+						width = 100000,
+						height = 100000,
+					},
+					on_open = function(_)
+						vim.cmd "startinsert!"
+					end,
+					on_close = function(_) end,
+					count = 99,
+				}
+				lazygit:toggle()
+			end
+			, "Lazygit" },
+
+		o = { "<cmd>Telescope git_status<cr>", " Git status (N/A)" },
+		B = { "<cmd>Telescope git_branches<cr>", " branches" },
+		c = { "<cmd>Telescope git_commits<cr>", " commits" },
+		C = { "<cmd>Telescope git_bcommits<cr>", " commits (current file)", },
 	},
 	u = {
-		name = "UI Elements",
+		name = "UI",
 		x = { ":set tabstop=2<cr>", "tabstop 2"},  --:set shiftwidth=2<cr>
 		y = { ":set tabstop=4<cr>", "tabstop 4"},  --  :set shiftwidth=4<cr>
 		z = { ":set tabstop=8<cr>", "tabstop 8"},    -- :set shiftwidth=8<cr>
-		i = { "<cmd>IndentBlanklineToggle<cr>", "Indent Lines" },
+		i = { "<cmd>IBLToggle<cr>", "Indent Lines" },
 		c = { function() vim.o.cursorline = false end, "Cursorline off" },
 		C = { function() vim.o.cursorline = true end, "Cursorline on" },
 
@@ -112,6 +148,7 @@ require('which-key').register({
 				require('mini.map').close()
 			else
 				vim.g.minimap_global_toggle = true
+				---@diagnostic disable-next-line: inject-field
 				vim.b.minimap_disable = false
 				require('mini.map').open()
 			end
@@ -125,58 +162,42 @@ require('which-key').register({
 	},
 	l = {
 		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		-- INFO: more in ./lsp-setup.lua
 		d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
-		W = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics 🔭" },
-		--w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics 🚦" },
 		f = { "<cmd>lua require('lvim.lsp.utils').format()<cr>", "Format" },
-		i = { "<cmd>LspInfo<cr>", "Info" },
-		I = { "<cmd>Mason<cr>", "Mason Info" },
-		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic", },
-		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic", },
-		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic ]d", },
+		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic [d", },
+		c = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-		--r = { "<cmd>Telescope lsp_references<cr>", "References" },
-		--R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		--s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols", },
+		r = { "<cmd>Telescope lsp_references<cr>", "References [gr]" },
 		u = { "<cmd>LspRestart<cr>", "Restart LSP" },
 		e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
-	}
-
+	},
+	-- T = {
+	-- 	name = 'lsp config help',
+	-- 	i = { "<cmd>LspInfo<cr>", "Info" },
+	-- 	I = { "<cmd>Mason<cr>", "Mason Info" },
+	-- },
 }, { prefix = '<leader>' })
 
 
 -- [[ SHOW GROUP HINTS ]]
 -- document existing key chains
 require('which-key').register {
-	['<leader>h'] = { name = 'Git Hunk', _ = 'which_key_ignore' },
+	['<leader>gh'] = { name = 'Hunk', _ = 'which_key_ignore' },
+	['<leader>gt'] = { name = 'Toggle', _ = 'which_key_ignore' },
+	['<leader>lw'] = { name = 'Workspace', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
 require('which-key').register({
 	['<leader>'] = { name = 'VISUAL <leader>' },
-	['<leader>h'] = { 'Git [H]unk' },
+	['<leader>g'] = { 'Git' },
+	['<leader>gh'] = { 'Hunk' },
 }, { mode = 'v' })
 
 
 
--- [[ My LVIM which-key ]]
-vim.keymap.set('n', '<leader>;', '<cmd>Alpha<CR>', { desc = 'Dashboard' })
-vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = 'Save buffer' })
-vim.keymap.set('n', '<leader>Q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
-vim.keymap.set('n', '<leader>q', '<cmd>confirm q<CR>', { desc = 'Close window' })
-vim.keymap.set('n', '<leader>c', '<cmd>bp<bar>bd#<CR>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'ZenMode' })
-vim.keymap.set('n', '<leader>f', function()
-	local ok = pcall(require('telescope.builtin').git_files, {})
-	if not ok then
-		require('telescope.builtin').find_files()
-	end
-end, { desc = 'Find File' })
---   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
---   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
---   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 
 -- [[ My LunarVim ]]
 vim.keymap.set('n', '<C-s>', ':w<cr>')
