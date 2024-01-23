@@ -6,8 +6,8 @@ return {
 			component_separators = ' ',
 			section_separators = { left = '', right = '' },
 			symbols = {
-				modified = '', -- 󰐗   󰐙  ', --   󱞂 
-				readonly = '', -- 󰅙   󰅚  ', --   󱙒
+				modified = '󰐙', -- 󰐗   󰐙  ', --   󱞂 
+				readonly = '󰅚', -- 󰅙   󰅚  ', --   󱙒
 				unnamed = '', --󱗼󱗿 󰘦  
 				newfile = '󰎔',
 			},
@@ -34,6 +34,7 @@ return {
 				{
 					"diff",
 					source = function()
+						---@diagnostic disable-next-line: undefined-field
 						local gitsigns = vim.b.gitsigns_status_dict
 						if gitsigns then
 							return {
@@ -91,7 +92,7 @@ return {
 							error = " ",
 							warn =  " ",
 							info =  " ",
-							hint =  " ",
+							hint =  "󰛨 ",
 						},
 						-- cond = conditions.hide_in_width,
 					},

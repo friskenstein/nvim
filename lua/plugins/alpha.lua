@@ -1,11 +1,12 @@
 return {
+
 	'goolord/alpha-nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	config = function ()
 
 		local header = {
-		    type = "text",
-		    val = {
+			type = "text",
+			val = {
 				[[          .                                                      .           ]],
 				[[        .n                   .                 .                  n.         ]],
 				[[  .   .dP                  dP                   9b                 9b.    .  ]],
@@ -27,11 +28,11 @@ return {
 				[[                              X. 9  `   "  P )X                              ]],
 				[[                              `b  `       "  d"                              ]],
 				[[                               `             "                               ]],
-		    },
-		    opts = {
-			position = "center",
-			hl = "Special",
-		    },
+			},
+			opts = {
+				position = "center",
+				hl = "Special",
+			},
 		}
 
 
@@ -41,30 +42,30 @@ return {
 		--- @param keybind_opts table? optional
 		local function button(sc, txt, keybind, keybind_opts)
 
-		    local opts = {
+			local opts = {
 				position = "center",
 				shortcut = sc,
 				cursor = 3,
 				width = 50,
 				align_shortcut = "right",
 				hl_shortcut = "Special",
-		    }
-		    if keybind then
+			}
+			if keybind then
 				keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
 				opts.keymap = { "n", sc, keybind, keybind_opts }
-		    end
+			end
 
-		    local function on_press()
+			local function on_press()
 				local key = vim.api.nvim_replace_termcodes(keybind or sc .. "<Ignore>", true, false, true)
 				vim.api.nvim_feedkeys(key, "t", false)
-		    end
+			end
 
-		    return {
+			return {
 				type = "button",
 				val = txt,
 				on_press = on_press,
 				opts = opts,
-		    }
+			}
 		end
 
 		local buttons = {
@@ -85,24 +86,24 @@ return {
 		}
 
 		local footer = {
-		    type = "text",
-		    val = "Neovim " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
-		    opts = {
+			type = "text",
+			val = "Neovim " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
+			opts = {
 				position = "center",
 				hl = "Special",
-		    },
+			},
 		}
 
 		local config = {
-		    layout = {
+			layout = {
 				header,
 				{ type = "padding", val = 1 },
 				buttons,
 				footer,
-		    },
-		    opts = {
-			margin = 5,
-		    },
+			},
+			opts = {
+				margin = 5,
+			},
 		}
 
 
