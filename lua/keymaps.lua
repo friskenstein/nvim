@@ -3,8 +3,8 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
--- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
--- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic message' })
@@ -130,18 +130,20 @@ require('which-key').register({
 		y = { ":set tabstop=4<cr>", "tabstop 4"},  --  :set shiftwidth=4<cr>
 		z = { ":set tabstop=8<cr>", "tabstop 8"},    -- :set shiftwidth=8<cr>
 		i = { "<cmd>IBLToggle<cr>", "Indent Lines" },
-		c = { function() vim.o.cursorline = false end, "Cursorline off" },
-		C = { function() vim.o.cursorline = true end, "Cursorline on" },
-
-		v = { function() vim.diagnostic.config({ virtual_text = false }) end, "Diagnostics virtual text off" },
-		V = { function() vim.diagnostic.config({ virtual_text = true }) end, "Diagnostics virtual text on" },
-		s = { function() vim.diagnostic.config({ signs = false }) end, "Diagnostics signs off" },
-		S = { function() vim.diagnostic.config({ signs = true }) end, "Diagnostics signs on" },
-		u = { function() vim.diagnostic.config({ underline = false }) end, "Diagnostics underline off" },
-		U = { function() vim.diagnostic.config({ underline = true }) end, "Diagnostics underline on" },
-
-		w = { function() vim.opt.list = false end, "Whitespace off" },
-		W = { function() vim.opt.list = true end, "Whitespace on" },
+		c = { function() vim.o.cursorline = not vim.o.cursorline end, "Cursorline" },
+		v = { function()
+			vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+			print("Diagnostic virtual text: " .. (vim.diagnostic.config().virtual_text and "ON" or "OFF"))
+			end, "Diagnostic virtual text" },
+		s = { function()
+			vim.diagnostic.config({ signs = not vim.diagnostic.config().signs })
+			print("Diagnostic signs: " .. (vim.diagnostic.config().signs and "on" or "off"))
+			end, "Diagnostic signs" },
+		u = { function()
+			vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })
+			print("Diagnostic underline: " .. (vim.diagnostic.config().underline and "on" or "off"))
+			end, "Diagnostic underline" },
+		w = { function() vim.opt.list = not vim.opt.list end, "Whitespace" },
 		m = { function ()
 			if vim.g.minimap_global_toggle then
 				vim.g.minimap_global_toggle = false
@@ -154,11 +156,12 @@ require('which-key').register({
 			end
 		end, 'Minimap' },
 		t = { function ()
-			vim.cmd("hi @text.todo guibg=NONE")
-			vim.cmd("hi @text.note guibg=NONE")
-			vim.cmd("hi @text.warning guibg=NONE")
-			vim.cmd("hi @text.danger guibg=NONE")
-		end, "Clear Treesitter TODO hi"}
+			if vim.g.transparent_floats_toggle then
+				vim.g.transparent_floats_toggle = false
+			else
+				vim.g.transparent_floats_toggle = true
+			end
+		end, 'Transparent Floats' },
 	},
 	l = {
 		name = "LSP",
@@ -203,8 +206,8 @@ require('which-key').register({
 vim.keymap.set('n', '<C-s>', ':w<cr>')
 vim.keymap.set('i', '<C-s>', '<Esc>:w<cr>')
 
-vim.keymap.set('n', '<S-l>', ':bnext<cr>')
-vim.keymap.set('n', '<S-h>', ':bprevious<cr>')
+vim.keymap.set('n', '<S-l>', ':bnext<cr>', { silent = true })
+vim.keymap.set('n', '<S-h>', ':bprevious<cr>', { silent = true })
 
 
 vim.keymap.set('n', "<A-Down>", ":m .+1<CR>==")

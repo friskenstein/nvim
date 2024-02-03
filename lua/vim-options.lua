@@ -52,7 +52,7 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
-vim.opt.fillchars = "eob: ,vert: ,stl: "
+vim.opt.fillchars = "eob: ,vert: ,stl: " -- stl is not a space
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 
@@ -62,3 +62,7 @@ vim.g.markdown_fenced_languages = {'html', 'python', 'javascript', 'js=javascrip
 
 vim.g.csv_arrange_align = 'r*'
 vim.g.csv_nomap_space = 1
+vim.g.csv_nomap_h = 1
+vim.g.csv_nomap_l = 1
+-- had to use this to get the <leader><space> keymap working
+vim.g.no_csv_maps = 1

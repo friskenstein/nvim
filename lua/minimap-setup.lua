@@ -1,4 +1,4 @@
-vim.g.minimap_global_toggle = true
+vim.g.minimap_global_toggle = false
 
 
 vim.api.nvim_create_autocmd({"BufEnter", "Filetype"}, {

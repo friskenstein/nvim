@@ -18,44 +18,33 @@ require('lazy').setup({
 
 	-- Default colorscheme 
 	{
-		"Dedtec/lunar.nvim",
+		"Dedtec/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'lunar'
+			vim.cmd.colorscheme 'tokyonight-moon'
 		end,
 	},
 	-- Colorschemes
-	'folke/tokyonight.nvim',
-	--'Dedtec/lunar.nvim',
+	--'Dedtec/tokyonight.nvim',
+	'Dedtec/lunar.nvim',
 	'Dedtec/poimandres.nvim',
 	'Dedtec/oxocarbon.nvim',
-	'LunarVim/horizon.nvim',
-	'JoosepAlviste/palenightfall.nvim',
+	'Dedtec/horizon.nvim',
+	'Dedtec/palenightfall.nvim',
 	{
-		"Shatur/neovim-ayu",
+		"Dedtec/neovim-ayu",
 		config = function ()
 			local colors = require('ayu.colors')
 			colors.generate(false)
 			require('ayu').setup({
 				overrides = {
-					Normal = { fg = colors.fg, bg = "None" },
-					ColorColumn = { bg = "None" },
-					SignColumn = { bg = "None" },
-					Folded = { bg = "None" },
-					FoldColumn = { bg = "None" },
-					--CursorLine = { bg = "None" },
-					--CursorColumn = { bg = "None" },
-					NormalFloat = { bg = "None" },
-					WhichKeyFloat = { bg = "None" },
-					VertSplit = { fg = "#0f1318" , bg = "None" },
-					NotifyBackground = { bg = colors.bg },
-					NvimTreeSymLink = { fg = colors.lsp_parameter },
-					GitSignsAdd = { fg = colors.vcs_added },
-					GitSignsDelete = { fg = colors.vcs_removed },
-					CursorLineNr = { fg = colors.accent, bg = "None" },
-					StatusLine = { bg='none' },
-					TabLineFill = { bg='none' },
+					-- ColorColumn = { bg = "None" },
+					-- WhichKeyFloat = { bg = "None" },
+					-- NotifyBackground = { bg = colors.bg },
+					-- NvimTreeSymLink = { fg = colors.lsp_parameter },
+					-- CursorLineNr = { fg = colors.accent, bg = "None" },
+					-- TabLineFill = { bg='none' },
 				},
 			})
 		end
@@ -201,6 +190,7 @@ require('lazy').setup({
 			},
 			scope = {
 				show_start = false,
+				show_end = false,
 			},
 		},
 	},
