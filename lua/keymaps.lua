@@ -143,7 +143,7 @@ require('which-key').register({
 			vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })
 			print("Diagnostic underline: " .. (vim.diagnostic.config().underline and "on" or "off"))
 			end, "Diagnostic underline" },
-		w = { function() vim.opt.list = not vim.opt.list end, "Whitespace" },
+		w = { function() vim.o.list = not vim.o.list end, "Whitespace" },
 		m = { function ()
 			if vim.g.minimap_global_toggle then
 				vim.g.minimap_global_toggle = false
