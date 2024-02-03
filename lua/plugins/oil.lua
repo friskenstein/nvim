@@ -13,6 +13,10 @@ return {
 			padding = 4,
 			max_width = 80,
 		},
+		keymaps = {
+			["-"] = "actions.close",
+			["<BS>"] = "actions.parent",
+		},
 	},
 	config = function(_, opts)
 		require('oil').setup(opts)
