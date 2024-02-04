@@ -15,8 +15,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic me
 -- WhichKey keymaps
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = 'Find Recent' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Buffers' })
-vim.keymap.set('n', '<leader>p', ':Telescope projects<CR>', { desc = 'Projects' })
-vim.keymap.set('n', '<leader>W', ':ASToggle<CR>', { desc = 'Autosave' })
+vim.keymap.set('n', '<leader>p', '<cmd>Telescope projects<CR>', { desc = 'Projects' })
+vim.keymap.set('n', '<leader>W', '<cmd>ASToggle<CR>', { desc = 'Autosave' })
 vim.keymap.set('n', '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { previewer = false, }) end, { desc = 'Current buffer fzf' })
 vim.keymap.set('n', '<leader>s/',  function() require('telescope.builtin').live_grep { grep_open_files = true, prompt_title = 'Grep Open Files', } end, { desc = 'Grep Open Files' })
 vim.keymap.set('n', '<leader>;', '<cmd>Alpha<CR>', { desc = 'Dashboard' })
@@ -38,7 +38,7 @@ end, { desc = 'Find File' })
 require('which-key').register({
 	s = {
 		name = "Telescope Search ",
-		b = { ":lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", "Grep current file" },
+		b = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", "Grep current file" },
 		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
 		c = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Colorschemes", },
 		f = { "<cmd>Telescope find_files<cr>", "Files" },
@@ -49,7 +49,7 @@ require('which-key').register({
 		r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text Grep" },
-		g = { ':LiveGrepGitRoot<cr>', 'Grep on Git Root' },
+		g = { '<cmd>LiveGrepGitRoot<cr>', 'Grep on Git Root' },
 		w = { require('telescope.builtin').grep_string, 'Grep by current Word' },
 		d = { require('telescope.builtin').diagnostics, 'Diagnostics' },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
@@ -68,21 +68,21 @@ require('which-key').register({
 	},
 	C = {
 		name = "CSV",
-		C = { ":%UnArrangeColumn|%ArrangeColumn!<cr>", "Refresh" },
-		a = { ":%ArrangeColumn!<cr>", "Arrange" },
-		u = { ":%UnArrangeColumn<cr>", "Un-arrange" },
-		l = { ":let b:csv_arrange_align='l*'|%ArrangeColumn!<cr>", "Align Left" },
-		r = { ":let b:csv_arrange_align='r*'|%ArrangeColumn!<cr>", "Align Right" },
-		c = { ":let b:csv_arrange_align='c*'|%ArrangeColumn!<cr>", "Align Center" },
-		d = { ":let b:csv_arrange_align='.*'|%ArrangeColumn!<cr>", "Align Decimal" },
+		C = { "<cmd>%UnArrangeColumn|%ArrangeColumn!<cr>", "Refresh" },
+		a = { "<cmd>%ArrangeColumn!<cr>", "Arrange" },
+		u = { "<cmd>%UnArrangeColumn<cr>", "Un-arrange" },
+		l = { "<cmd>let b:csv_arrange_align='l*'|%ArrangeColumn!<cr>", "Align Left" },
+		r = { "<cmd>let b:csv_arrange_align='r*'|%ArrangeColumn!<cr>", "Align Right" },
+		c = { "<cmd>let b:csv_arrange_align='c*'|%ArrangeColumn!<cr>", "Align Center" },
+		d = { "<cmd>let b:csv_arrange_align='.*'|%ArrangeColumn!<cr>", "Align Decimal" },
 	},
 	F = {
 		name = "Format",
 		i = { "<Esc>gg=G<CR>", "Reindent buffer" },
 		F = { "<cmd>!npx prettier % --write<CR>", "Prettier" },
 		e = { "<cmd>!eslint_d --fix %<CR>", "EsLint" },
-		H = { ":%!xxd<cr>", "Filter to HEX" },
-		h = { ":%!xxd -r<cr>", "HEX -> text" },
+		H = { "<cmd>%!xxd<cr>", "Filter to HEX" },
+		h = { "<cmd>%!xxd -r<cr>", "HEX -> text" },
 	},
 	g = {
 		name = 'Git',
@@ -126,9 +126,9 @@ require('which-key').register({
 	},
 	u = {
 		name = "UI",
-		x = { ":set tabstop=2<cr>", "tabstop 2"},  --:set shiftwidth=2<cr>
-		y = { ":set tabstop=4<cr>", "tabstop 4"},  --  :set shiftwidth=4<cr>
-		z = { ":set tabstop=8<cr>", "tabstop 8"},    -- :set shiftwidth=8<cr>
+		x = { "<cmd>set tabstop=2<cr>", "tabstop 2"},  --:set shiftwidth=2<cr>
+		y = { "<cmd>set tabstop=4<cr>", "tabstop 4"},  --  :set shiftwidth=4<cr>
+		z = { "<cmd>set tabstop=8<cr>", "tabstop 8"},    -- :set shiftwidth=8<cr>
 		i = { "<cmd>IBLToggle<cr>", "Indent Lines" },
 		c = { function() vim.o.cursorline = not vim.o.cursorline end, "Cursorline" },
 		v = { function()
@@ -164,6 +164,7 @@ require('which-key').register({
 				print('Transparent floats ON')
 			end
 		end, 'Transparent Floats' },
+		e = { "<cmd>vert topleft split<cr><cmd>vert res 30<cr><cmd>ene<cr><C-w>l", "Pad left" }
 	},
 	l = {
 		name = "LSP",
@@ -205,19 +206,19 @@ require('which-key').register({
 
 
 -- [[ My LunarVim ]]
-vim.keymap.set('n', '<C-s>', ':w<cr>', { silent = true })
-vim.keymap.set('i', '<C-s>', '<Esc>:w<cr>', { silent = true })
+vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc><cmd>w<cr>', { silent = true })
 
-vim.keymap.set('n', '<S-l>', ':bnext<cr>', { silent = true })
-vim.keymap.set('n', '<S-h>', ':bprevious<cr>', { silent = true })
+vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { silent = true })
+vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { silent = true })
 
 
-vim.keymap.set('n', "<A-Down>", ":m .+1<CR>==")
-vim.keymap.set('n', "<A-Up>", ":m .-2<CR>==")
-vim.keymap.set('i', "<A-Down>", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set('i', "<A-Up>", "<Esc>:m .-2<CR>==gi")
-vim.keymap.set('v', "<A-Down>", ":m '>+1<CR>gv-gv")
-vim.keymap.set('v', "<A-Up>", ":m '<-2<CR>gv-gv")
+vim.keymap.set('n', "<A-Down>", "<cmd>m .+1<CR>==")
+vim.keymap.set('n', "<A-Up>", "<cmd>m .-2<CR>==")
+vim.keymap.set('i', "<A-Down>", "<Esc><cmd>m .+1<CR>==gi")
+vim.keymap.set('i', "<A-Up>", "<Esc><cmd>m .-2<CR>==gi")
+vim.keymap.set('v', "<A-Down>", "<cmd>m '>+1<CR>gv-gv")
+vim.keymap.set('v', "<A-Up>", "<cmd>m '<-2<CR>gv-gv")
 vim.keymap.set('n', "<S-Down>", "<S-v><Down>")
 vim.keymap.set('n', "<S-Up>", "<S-v><Up>")
 vim.keymap.set('i', "<S-Down>", "<Esc><S-v><Down>")
@@ -257,14 +258,14 @@ vim.keymap.set('t', "<C-k>", "<C-\\><C-N><C-w>k")
 vim.keymap.set('t', "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- Resize with arrows
-vim.keymap.set('n', "<A-k>", ":resize -2<CR>")
-vim.keymap.set('n', "<A-j>", ":resize +2<CR>")
-vim.keymap.set('n', "<A-h>", ":vertical resize -2<CR>")
-vim.keymap.set('n', "<A-l>", ":vertical resize +2<CR>")
-vim.keymap.set("t", "<A-k>", "<cmd>resize -2<CR>")
-vim.keymap.set("t", "<A-j>", "<cmd>resize +2<CR>")
-vim.keymap.set("t", "<A-h>", "<cmd>vertical resize -2<CR>")
-vim.keymap.set("t", "<A-l>", "<cmd>vertical resize +2<CR>")
+vim.keymap.set('n', "<A-k>", "<cmd>resize -2<CR>", {silent = true})
+vim.keymap.set('n', "<A-j>", "<cmd>resize +2<CR>", {silent = true})
+vim.keymap.set('n', "<A-h>", "<cmd>vertical resize -2<CR>", {silent = true})
+vim.keymap.set('n', "<A-l>", "<cmd>vertical resize +2<CR>", {silent = true})
+vim.keymap.set("t", "<A-k>", "<cmd>resize -2<CR>", {silent = true})
+vim.keymap.set("t", "<A-j>", "<cmd>resize +2<CR>", {silent = true})
+vim.keymap.set("t", "<A-h>", "<cmd>vertical resize -2<CR>", {silent = true})
+vim.keymap.set("t", "<A-l>", "<cmd>vertical resize +2<CR>", {silent = true})
 
 -- Different paste behaviour
 -- lvim.keys.normal_mode["p"] = [["0p]]
@@ -278,7 +279,7 @@ vim.keymap.set("t", "<A-l>", "<cmd>vertical resize +2<CR>")
 -- vim.keymap.del("n", "<C-Up>")
 
 -- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+-- lvim.keys.normal_mode["<C-q>"] = "<cmd>q<cr>" -- or vim.keymap.set("n", "<C-q>", "<cmd>q<cr>" )
 
 
 -- [[ LVIM DEFAULTS ]]
