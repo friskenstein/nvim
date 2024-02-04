@@ -96,7 +96,7 @@ return {
 						},
 						-- cond = conditions.hide_in_width,
 					},
-					{ "filetype", cond = nil, padding = { left = 1, right = 2 } },
+					-- { "filetype", cond = nil, padding = { left = 1, right = 2 } },
 			},
 			lualine_y = {{ 'branch', icon = {'󰊢', color={fg='#f1502f'}}, separator = { left = '', right = '' }, }},
 			lualine_z = {},
