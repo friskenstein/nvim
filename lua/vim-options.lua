@@ -54,7 +54,7 @@ vim.o.termguicolors = true
 
 vim.opt.fillchars = "eob: ,vert: ,stl: " -- stl is not a space
 vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↴"
+--vim.opt.listchars:append "eol:↴"
 
 vim.opt.ww = 'b,s,<,>,[,]'
 
@@ -66,3 +66,6 @@ vim.g.csv_nomap_h = 1
 vim.g.csv_nomap_l = 1
 -- had to use this to get the <leader><space> keymap working
 vim.g.no_csv_maps = 1
+
+-- disables built-in python.vim setting expandtab
+vim.g.python_recommended_style = 0
