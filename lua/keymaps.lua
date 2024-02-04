@@ -158,8 +158,10 @@ require('which-key').register({
 		t = { function ()
 			if vim.g.transparent_floats_toggle then
 				vim.g.transparent_floats_toggle = false
+				print('Transparent floats OFF')
 			else
 				vim.g.transparent_floats_toggle = true
+				print('Transparent floats ON')
 			end
 		end, 'Transparent Floats' },
 	},
@@ -203,8 +205,8 @@ require('which-key').register({
 
 
 -- [[ My LunarVim ]]
-vim.keymap.set('n', '<C-s>', ':w<cr>')
-vim.keymap.set('i', '<C-s>', '<Esc>:w<cr>')
+vim.keymap.set('n', '<C-s>', ':w<cr>', { silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:w<cr>', { silent = true })
 
 vim.keymap.set('n', '<S-l>', ':bnext<cr>', { silent = true })
 vim.keymap.set('n', '<S-h>', ':bprevious<cr>', { silent = true })
