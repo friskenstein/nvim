@@ -1,5 +1,4 @@
 -- [[ Configure Telescope ]]
---
 -- See `:help telescope` and `:help telescope.setup()`
 local _, actions = pcall(require, "telescope.actions")
 
@@ -14,6 +13,7 @@ require('telescope').setup {
 				['<c-c>'] = actions.delete_buffer,
 				['<c-h>'] = actions.which_key,
 				['<c-v>'] = actions.file_vsplit,
+				['<c-s>'] = actions.file_split,
 			},
 			n = {
 				['<c-c>'] = actions.delete_buffer,

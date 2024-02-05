@@ -3,6 +3,9 @@ return {
 	-- Adds git related signs to the gutter, as well as utilities for managing changes
 	'lewis6991/gitsigns.nvim',
 	opts = {
+		signs = {
+			changedelete = { text = '│' },
+		},
 		-- See `:help gitsigns.txt`
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns
