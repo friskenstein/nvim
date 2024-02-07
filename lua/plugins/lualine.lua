@@ -6,11 +6,13 @@ return {
 			component_separators = ' ',
 			section_separators = { left = '', right = '' },
 			symbols = {
-				modified = '󰐙', -- 󰐗   󰐙  ', --   󱞂 
-				readonly = '󰅚', -- 󰅙   󰅚  ', --   󱙒
-				unnamed = '', --󱗼󱗿 󰘦  
+				modified = '●', --󰐙  󰐗  󰐙     󱞂
+				readonly = '󱙒', --󰅚  󰅙  󰅚    󱙒
+				unnamed = '', -- 󱗼 󱗿 󰘦 
 				newfile = '󰎔',
 			},
+			path = 1,
+			shorting_target = 25,
 		},
 		extensions = {
 			--'oil',

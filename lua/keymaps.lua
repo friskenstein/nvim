@@ -25,6 +25,7 @@ vim.keymap.set('n', '<leader>Q', '<cmd>confirm qa<CR>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>q', '<cmd>confirm q<CR>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>c', '<cmd>bp<bar>bd#<CR>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { desc = 'ZenMode' })
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Explorer' })
 vim.keymap.set('n', '<leader>f', function()
 	local ok = pcall(require('telescope.builtin').git_files, {})
 	if not ok then
@@ -33,7 +34,6 @@ vim.keymap.set('n', '<leader>f', function()
 end, { desc = 'Find File' })
 --   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
 --   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
---   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 
 require('which-key').register({
 	s = {
@@ -217,8 +217,8 @@ vim.keymap.set('n', "<A-Down>", "<cmd>m .+1<CR>==")
 vim.keymap.set('n', "<A-Up>", "<cmd>m .-2<CR>==")
 vim.keymap.set('i', "<A-Down>", "<Esc><cmd>m .+1<CR>==gi")
 vim.keymap.set('i', "<A-Up>", "<Esc><cmd>m .-2<CR>==gi")
-vim.keymap.set('v', "<A-Down>", "<cmd>m '>+1<CR>gv-gv")
-vim.keymap.set('v', "<A-Up>", "<cmd>m '<-2<CR>gv-gv")
+vim.keymap.set('v', "<A-Down>", ":m '>+1<CR>gv-gv", { silent = true })
+vim.keymap.set('v', "<A-Up>", ":m '<-2<CR>gv-gv", { silent = true })
 vim.keymap.set('n', "<S-Down>", "<S-v><Down>")
 vim.keymap.set('n', "<S-Up>", "<S-v><Up>")
 vim.keymap.set('i', "<S-Down>", "<Esc><S-v><Down>")
