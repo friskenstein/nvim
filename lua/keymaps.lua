@@ -204,6 +204,7 @@ require('which-key').register({
 
 
 
+vim.keymap.set('n', '<C-a>', 'ggVG', { silent = true })
 
 -- [[ My LunarVim ]]
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { silent = true })
@@ -236,10 +237,11 @@ vim.keymap.set('n', "<Enter>", "o<Esc>")
 vim.keymap.set('n', "<S-Enter>", "O<Esc>")
 
 -- Tab indenting
-vim.keymap.set('n', "<Tab>", ">>")
-vim.keymap.set('n', "<S-Tab>", "<<")
 vim.keymap.set('v', "<Tab>", ">gv")
 vim.keymap.set('v', "<S-Tab>", "<gv")
+-- I don't want this - overrides C-i / Tab - I can just move to visual line first or use >>
+-- vim.keymap.set('n', "<Tab>", ">>")
+-- vim.keymap.set('n', "<S-Tab>", "<<")
 
 -- Better vim style indenting
 vim.keymap.set('v', ">", ">gv")
@@ -251,11 +253,6 @@ vim.keymap.set('n', "<C-h>", "<C-w>h")
 vim.keymap.set('n', "<C-j>", "<C-w>j")
 vim.keymap.set('n', "<C-k>", "<C-w>k")
 vim.keymap.set('n', "<C-l>", "<C-w>l")
--- Terminal window navigation
-vim.keymap.set('t', '<C-h>', "<C-\\><C-N><C-w>h")
-vim.keymap.set('t', '<C-j>', "<C-\\><C-N><C-w>j")
-vim.keymap.set('t', "<C-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set('t', "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- Resize with arrows
 vim.keymap.set('n', "<A-k>", "<cmd>resize -2<CR>", {silent = true})

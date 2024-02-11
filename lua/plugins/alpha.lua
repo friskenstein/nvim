@@ -31,7 +31,7 @@ return {
 			},
 			opts = {
 				position = "center",
-				hl = "Boolean",
+				hl = "Comment",
 			},
 		}
 
@@ -48,7 +48,7 @@ return {
 				cursor = 3,
 				width = 50,
 				align_shortcut = "right",
-				hl_shortcut = "Boolean",
+				hl_shortcut = "String",
 			}
 			if keybind then
 				keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
@@ -90,7 +90,7 @@ return {
 			val = "Neovim " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
 			opts = {
 				position = "center",
-				hl = "Boolean",
+				hl = "String",
 			},
 		}
 

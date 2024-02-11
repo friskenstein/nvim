@@ -58,7 +58,35 @@ require('lazy').setup({
 		end
 	},
 
-	"tpope/vim-surround",
+	{
+		"tpope/vim-surround",
+		init = function()
+			vim.g["surround_no_mappings"] = 1
+		end,
+		config = function()
+			vim.keymap.set("n", "ds", "<Plug>Dsurround")
+			vim.keymap.set("n", "cs", "<Plug>Csurround")
+			vim.keymap.set("n", "cS", "<Plug>CSurround")
+			vim.keymap.set("n", "ys", "<Plug>Ysurround")
+			vim.keymap.set("n", "yS", "<Plug>YSurround")
+			vim.keymap.set("n", "yss", "<Plug>Yssurround")
+			vim.keymap.set("n", "ySs", "<Plug>YSsurround")
+			vim.keymap.set("n", "ySS", "<Plug>YSsurround")
+			-- conflicting with leap.nvim
+			--vim.keymap.set("x", "S", "<Plug>VSurround")
+			--vim.keymap.set("x", "gS", "<Plug>VgSurround")
+			vim.keymap.set("x", "gS", "<Plug>VSurround") -- NOTE: gS instead of default S
+		end,
+	},
+	{
+		'ggandor/leap.nvim',
+		config = function()
+			-- needs to load after vim-surround
+			require('leap').create_default_mappings()
+		end
+	},
+
+
 	"chrisbra/csv.vim",
 	{
 		"okuuva/auto-save.nvim",

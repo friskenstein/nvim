@@ -21,17 +21,28 @@ return {
 			'toggleterm',
 		},
 		sections = {
-			lualine_a = { { 'macro-recording', fmt = function()
-				local recording_register = vim.fn.reg_recording()
-			if recording_register == "" then
-					return ""
-				else
-					return "Recording @" .. recording_register
-				end
-			end } },
+			lualine_a = {
+				{
+					'macro-recording',
+					fmt = function()
+						local recording_register = vim.fn.reg_recording()
+						if recording_register == "" then
+							return ""
+						else
+							return "Recording @" .. recording_register
+						end
+					end
+				}
+			},
 			-- TODO: replace toggleterm ext
 			-- local current_ft = refresh_real_curwin and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(refresh_real_curwin), 'filetype') or vim.bo.filetype
-			lualine_b = { { 'filename', separator = { left = '', right = '' }, } },
+			lualine_b = {
+				{
+					'filename',
+					padding = { left = 0 },
+					-- separator = { left = '', right = '' },
+				}
+			},
 			lualine_c = {
 				{
 					"diff",
@@ -46,11 +57,11 @@ return {
 							}
 						end
 					end,
-					padding = { left = 2, right = 2 },
+					padding = { left = 1, right = 1 },
 					symbols = {
-						added = "+ ",
-						modified = "~ ",
-						removed = "- ",
+						added = "+",
+						modified = "~",
+						removed = "-",
 					},
 					-- diff_color = {
 					-- 	added = {
@@ -68,39 +79,56 @@ return {
 					-- },
 					cond = nil,
 				},
-				-- TODO: pyenv
-				-- {
-				-- 	function()
-				-- 		local utils = require "lvim.core.lualine.utils"
-				-- 		if vim.bo.filetype == "python" then
-				-- 			local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
-				-- 			if venv then
-				-- 				local icons = require "nvim-web-devicons"
-				-- 				local py_icon, _ = icons.get_icon ".py"
-				-- 				return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
-				-- 			end
-				-- 		end
-				-- 		return ""
-				-- 	end,
-				-- 	color = { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("GitSignsAdd")), "fg#") },
-				-- 	cond = conditions.hide_in_width,
-				-- }
 			},
 			lualine_x = {
-					{
-						"diagnostics",
-						sources = { "nvim_diagnostic" },
-						symbols = {
-							error = " ",
-							warn =  " ",
-							info =  " ",
-							hint =  "󰛨 ",
-						},
-						-- cond = conditions.hide_in_width,
+				{
+					"diagnostics",
+					sources = { "nvim_diagnostic" },
+					symbols = {
+						error = " ",
+						warn =  " ",
+						info =  " ",
+						hint =  "󰛨 ",
 					},
-					-- { "filetype", cond = nil, padding = { left = 1, right = 2 } },
+					-- cond = conditions.hide_in_width,
+				},
+				-- { "filetype", cond = nil, padding = { left = 1, right = 2 } },
 			},
-			lualine_y = {{ 'branch', icon = {'󰊢', color={fg='#f1502f'}}, separator = { left = '', right = '' }, }},
+			lualine_y = {
+				{
+					'branch',
+					icon = {'󰊢', color={fg='#f1502f'}},
+					padding = { right = 0 },
+					-- separator = { left = '' },
+				},
+				{
+					fmt = function()
+						local function env_cleanup(venv)
+							if string.find(venv, "/") then
+								local final_venv = venv
+								for w in venv:gmatch "([^/]+)" do
+									final_venv = w
+								end
+								venv = final_venv
+							end
+							return venv
+						end
+
+						if vim.bo.filetype == "python" then
+							local venv = os.getenv "CONDA_DEFAULT_ENV" or os.getenv "VIRTUAL_ENV"
+							if venv then
+								local icons = require "nvim-web-devicons"
+								local py_icon, _ = icons.get_icon ".py"
+								return string.format(py_icon .. " %s", env_cleanup(venv))
+							end
+						end
+						return ""
+					end,
+					-- color = { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("DevIconPy")), "fg#") },
+					-- separator = { right = '' },
+					-- cond = conditions.hide_in_width,
+				},
+			},
 			lualine_z = {},
 		},
 		inactive_sections = {

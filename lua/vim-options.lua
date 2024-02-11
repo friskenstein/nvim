@@ -6,7 +6,7 @@ vim.o.cmdheight = 0
 vim.o.so = 0
 vim.o.ph = 30
 vim.o.et = false
-vim.o.scroll = 10
+vim.o.scroll = 30
 vim.o.ts = 4
 vim.o.sw = 0 -- fallback to tabstop
 vim.o.wrap = false
@@ -53,7 +53,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.opt.fillchars = "eob: ,vert: ,stl: " -- stl is not a space
-vim.opt.listchars:append "space:⋅"
+vim.opt.listchars = "space:⋅,tab:› ,trail:,nbsp:+"
 --vim.opt.listchars:append "eol:↴"
 
 vim.opt.ww = 'b,s,<,>,[,]'
