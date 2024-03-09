@@ -18,7 +18,7 @@ require('lazy').setup({
 
 	-- Default colorscheme 
 	{
-		"tiagovla/tokyodark.nvim",
+		"Dedtec/witchcraft.nvim",
 		opts = {
 			transparent_background = true,
 		},
