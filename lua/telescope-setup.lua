@@ -14,6 +14,7 @@ require('telescope').setup {
 				['<c-h>'] = actions.which_key,
 				['<c-v>'] = actions.file_vsplit,
 				['<c-s>'] = actions.file_split,
+				['<c-e>'] = actions.to_fuzzy_refine,
 			},
 			n = {
 				['<c-c>'] = actions.delete_buffer,

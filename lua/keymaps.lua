@@ -1,3 +1,9 @@
+
+vim.keymap.set('v', 'i,', '<esc>T,vt,', {desc='inside commas'})
+vim.keymap.set('v', 'a,', '<esc>F,vf,', {desc='around commas'})
+vim.keymap.set('v', 'i.', '<esc>T.vt.', {desc='inside periods'})
+vim.keymap.set('v', 'a.', '<esc>F.vf.', {desc='around periods'})
+
 -- [[ Basic Keymaps ]]
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -45,7 +51,7 @@ require('which-key').register({
 		h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		H = { "<cmd>Telescope highlights<cr>", "Highlight groups" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man pages" },
-		n = { "<cmd>Telescope notify<cr>", "Notifications" },
+		-- n = { "<cmd>Telescope notify<cr>", "Notifications" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text Grep" },
@@ -79,8 +85,8 @@ require('which-key').register({
 	F = {
 		name = "Format",
 		i = { "<Esc>gg=G<CR>", "Reindent buffer" },
-		F = { "<cmd>!npx prettier % --write<CR>", "Prettier" },
-		e = { "<cmd>!eslint_d --fix %<CR>", "EsLint" },
+		F = { "<cmd>!noglob npx prettier % --write<CR>", "Prettier" },
+		e = { "<cmd>!noglob eslint_d --fix %<CR>", "ESLint" },
 		H = { "<cmd>%!xxd<cr>", "Filter to HEX" },
 		h = { "<cmd>%!xxd -r<cr>", "HEX -> text" },
 	},
@@ -170,7 +176,7 @@ require('which-key').register({
 		name = "LSP",
 		-- INFO: more in ./lsp-setup.lua
 		d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
-		f = { "<cmd>lua require('lvim.lsp.utils').format()<cr>", "Format" },
+		f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
 		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic ]d", },
 		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic [d", },
 		c = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
@@ -204,7 +210,7 @@ require('which-key').register({
 
 
 
-vim.keymap.set('n', '<C-a>', 'ggVG', { silent = true })
+vim.keymap.set('i', '<C-a>', '<Esc>ggVG', { silent = true })
 
 -- [[ My LunarVim ]]
 vim.keymap.set('n', '<C-s>', '<cmd>w<cr>', { silent = true })

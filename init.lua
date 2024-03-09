@@ -1,6 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
+vim.o.termguicolors = true
 require('gui')
 require('lazy-setup')
 require('vim-options')

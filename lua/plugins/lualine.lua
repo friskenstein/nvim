@@ -59,9 +59,9 @@ return {
 					end,
 					padding = { left = 1, right = 1 },
 					symbols = {
-						added = "+",
-						modified = "~",
-						removed = "-",
+						added = " ",
+						modified = " ",
+						removed = " ",
 					},
 					-- diff_color = {
 					-- 	added = {

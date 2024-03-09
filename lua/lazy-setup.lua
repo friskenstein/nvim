@@ -18,11 +18,21 @@ require('lazy').setup({
 
 	-- Default colorscheme 
 	{
+		"tiagovla/tokyodark.nvim",
+		opts = {
+			transparent_background = true,
+		},
+		config = function(_, opts)
+			require("tokyodark").setup(opts) -- calling setup is optional
+			vim.cmd [[colorscheme tokyodark]]
+		end,
+	},
+	{
 		"Dedtec/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'tokyonight-moon'
+			--vim.cmd.colorscheme 'tokyonight-moon'
 		end,
 	},
 	-- Colorschemes
@@ -32,6 +42,7 @@ require('lazy').setup({
 	'Dedtec/oxocarbon.nvim',
 	'Dedtec/horizon.nvim',
 	'Dedtec/palenightfall.nvim',
+	'Dedtec/focus.nvim',
 	{
 		"Dedtec/neovim-ayu",
 		config = function ()
@@ -108,17 +119,25 @@ require('lazy').setup({
 						color = "error", -- can be a hex color, or a named color (see below)
 						alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 					},
-					-- 󰗡 󰝦  󰥪     󰴒 󰷈  󱇨 󱓦
-					TODO = { icon = "󰏫 ", color = "warning" },
+					-- 󰄱  󰗡 󰝦  󰥪     󰴒 󰷈  󱇨 󱓦
+					TODO = { icon = " ", color = "hint" },
 					-- 
 					TAG = { icon = " ", color = "info", alt = { "BOOKMARK" }},
 					SECTION = { icon = "󰚟 ", color = "info"},
 					HACK = { icon = " ", color = "warning" },
 					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 					PERF = { icon = "󰓅 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-					NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+					NOTE = { icon = " ", color = "info", alt = { "INFO" } },
 					-- 󰂖
 					TEST = { icon = "󰙨󰤑", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+				},
+				colors = {
+					error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+					warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+					info = { "DiagnosticInfo", "#2563EB" },
+					hint = { "DiagnosticHint", "#10B981" },
+					default = { "Identifier", "#7C3AED" },
+					test = { "Define", "#FF00FF" }
 				},
 				highlight = {
 					keyword = "fg",

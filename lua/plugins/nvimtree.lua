@@ -4,13 +4,22 @@ return {
 	opts = {
 		view = {
 			width = 30,
+			signcolumn = 'no',
 		},
 		renderer = {
 			special_files = {},
+			highlight_git = 'name',
+			indent_width = 2,
+			indent_markers = {
+				enable = true,
+			},
 			icons = {
 				git_placement = 'signcolumn',
 				show = {
-					folder = false,
+					-- folder = false,
+					git = false,
+					bookmarks = false,
+					diagnostics = false,
 				},
 				glyphs = {
 					default = "",
@@ -18,12 +27,12 @@ return {
 					bookmark = "󰆤",
 					modified = "●",
 					folder = {
-						arrow_closed = "",
-						arrow_open = "",
-						default = "",
-						open = "",
-						empty = "",
-						empty_open = "",
+						arrow_closed = " ", -- "",
+						arrow_open = " ", -- "",
+						default = "", -- "",
+						open = "",-- "",
+						empty = "",-- "",
+						empty_open = "",-- "",
 						symlink = "",
 						symlink_open = "",
 					},
@@ -55,6 +64,9 @@ return {
 		},
 		filters = {
 			git_ignored = false,
+			custom = {
+				'^\\.DS_Store$',
+			}
 		},
 	},
 }
