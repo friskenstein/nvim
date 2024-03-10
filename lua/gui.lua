@@ -7,39 +7,39 @@ vim.diagnostic.config({
 
 vim.g.transparent_floats_toggle = true
 
--- vim.api.nvim_create_autocmd("ColorScheme", {
--- 	pattern = "*",
--- 	callback = function()
--- 		local hl_groups = {
--- 			"Normal",
--- 			"SignColumn",
--- 			"NormalNC",
--- 			"TelescopeBorder",
--- 			"NvimTreeNormal",
--- 			"NvimTreeNormalNC",
--- 			"EndOfBuffer",
--- 			"MsgArea",
--- 			"StatusLine",
--- 			"StatusLineNC",
--- 			"TabLineFill",
--- 		}
--- 		for _, name in ipairs(hl_groups) do
--- 			vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
--- 		end
---
--- 		if vim.g.transparent_floats_toggle then
--- 			vim.cmd("hi NormalFloat ctermbg=none guibg=none")
--- 			vim.cmd("hi FloatBorder ctermbg=none guibg=none")
--- 			vim.cmd("hi FloatTitle ctermbg=none guibg=none")
--- 			vim.cmd("hi! link WhichKeyFloat NormalFloat")
--- 		end
---
--- 		vim.cmd("hi! link TelescopeNormal NormalFloat")
--- 		vim.cmd("hi! link TelescopeBorder FloatBorder")
--- 		vim.cmd("hi! link WhichKeyBorder FloatBorder")
---
--- 	end,
--- })
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = function()
+		local hl_groups = {
+			"Normal",
+			"SignColumn",
+			"NormalNC",
+			"TelescopeBorder",
+			"NvimTreeNormal",
+			"NvimTreeNormalNC",
+			"EndOfBuffer",
+			"MsgArea",
+			"StatusLine",
+			"StatusLineNC",
+			"TabLineFill",
+		}
+		for _, name in ipairs(hl_groups) do
+			vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+		end
+
+		if vim.g.transparent_floats_toggle then
+			vim.cmd("hi NormalFloat ctermbg=none guibg=none")
+			vim.cmd("hi FloatBorder ctermbg=none guibg=none")
+			vim.cmd("hi FloatTitle ctermbg=none guibg=none")
+			vim.cmd("hi! link WhichKeyFloat NormalFloat")
+		end
+
+		vim.cmd("hi! link TelescopeNormal NormalFloat")
+		vim.cmd("hi! link TelescopeBorder FloatBorder")
+		vim.cmd("hi! link WhichKeyBorder FloatBorder")
+
+	end,
+})
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

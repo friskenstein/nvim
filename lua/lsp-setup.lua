@@ -31,6 +31,14 @@ local servers = {
 			diagnostics = { disable = { 'missing-fields' } },
 		},
 	},
+	cssls = {
+		css = {
+			validate = true,
+			lint = {
+				unknownAtRules = "ignore",
+			},
+		},
+	},
 }
 
 

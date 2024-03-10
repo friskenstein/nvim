@@ -120,7 +120,7 @@ require('lazy').setup({
 						alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 					},
 					-- 󰄱  󰗡 󰝦  󰥪     󰴒 󰷈  󱇨 󱓦
-					TODO = { icon = " ", color = "hint" },
+					TODO = { icon = " ", color = "hint" },
 					-- 
 					TAG = { icon = " ", color = "info", alt = { "BOOKMARK" }},
 					SECTION = { icon = "󰚟 ", color = "info"},
@@ -141,7 +141,7 @@ require('lazy').setup({
 				},
 				highlight = {
 					keyword = "fg",
-					after = "fg",
+					after = "",
 					comments_only = true,
 				},
 				gui_style = {
