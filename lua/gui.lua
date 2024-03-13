@@ -5,6 +5,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
+vim.g.transparent_bg_toggle = true
 vim.g.transparent_floats_toggle = true
 
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -23,8 +24,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			"StatusLineNC",
 			"TabLineFill",
 		}
-		for _, name in ipairs(hl_groups) do
-			vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+
+		if vim.g.transparent_bg_toggle then
+			for _, name in ipairs(hl_groups) do
+				vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+			end
 		end
 
 		if vim.g.transparent_floats_toggle then
@@ -37,6 +41,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.cmd("hi! link TelescopeNormal NormalFloat")
 		vim.cmd("hi! link TelescopeBorder FloatBorder")
 		vim.cmd("hi! link WhichKeyBorder FloatBorder")
+
+		vim.cmd("set laststatus=3")
 
 	end,
 })

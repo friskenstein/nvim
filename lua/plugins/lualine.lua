@@ -39,7 +39,7 @@ return {
 			lualine_b = {
 				{
 					'filename',
-					padding = { left = 0 },
+					padding = { left = 0, right = 2 },
 					-- separator = { left = '', right = '' },
 				}
 			},
@@ -57,7 +57,7 @@ return {
 							}
 						end
 					end,
-					padding = { left = 1, right = 1 },
+					padding = { left = 2, right = 1 },
 					symbols = {
 						added = " ",
 						modified = " ",
@@ -79,6 +79,29 @@ return {
 					-- },
 					cond = nil,
 				},
+				{
+					-- codium status
+					function()
+						local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
+						if status == nil then
+							return ""
+						end
+						if status == " ON" then
+							return "󱙺 "
+						end
+						if status == "OFF" then
+							return "󱙻 "
+						end
+						if status == ' 0 ' then
+							return "󱚢 no suggestions"
+						end
+						if status == ' * ' then
+							return "󱚠 "
+						end
+						return "󱚤 " .. status
+					end,
+					color = { fg = "#09b6a2" },
+				},
 			},
 			lualine_x = {
 				{
@@ -98,7 +121,7 @@ return {
 				{
 					'branch',
 					icon = {'󰊢', color={fg='#f1502f'}},
-					padding = { right = 0 },
+					padding = { left = 2, right = 0 },
 					-- separator = { left = '' },
 				},
 				{

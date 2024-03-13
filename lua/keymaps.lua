@@ -63,6 +63,16 @@ require('which-key').register({
 		l = { "<cmd>Telescope resume<cr>", "Resume last search" },
 		s = { "<cmd>Telescope<cr>", "Select Telescope" },
 	},
+	a = {
+		name = "AI copilot",
+		A = { "<cmd>CodeiumAuto<cr>", "Auto" },
+		M = { "<cmd>CodeiumManual<cr>", "Manual" },
+		-- TODO: needs to be insert mode keymapping
+		--a = { function() vim.api.nvim_call_function("codeium#Complete", {}) end, "Suggest" },
+		e = { "<cmd>CodeiumEnable<cr>", "Enable" },
+		d = { "<cmd>CodeiumDisable<cr>", "Disable" },
+		a = { "<cmd>CodeiumToggle<cr>", "Toggle" },
+	},
 	t = {
 		name = "TODO & Terminal",
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Floating Terminal" },
@@ -161,6 +171,15 @@ require('which-key').register({
 				require('mini.map').open()
 			end
 		end, 'Minimap' },
+		T = { function ()
+			if vim.g.transparent_bg_toggle then
+				vim.g.transparent_bg_toggle = false
+				print('Transparent BG OFF')
+			else
+				vim.g.transparent_bg_toggle = true
+				print('Transparent BG ON')
+			end
+		end, 'Transparent BG' },
 		t = { function ()
 			if vim.g.transparent_floats_toggle then
 				vim.g.transparent_floats_toggle = false
