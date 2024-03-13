@@ -83,6 +83,10 @@ return {
 				{
 					-- codium status
 					function()
+						local filetype = vim.bo.filetype or vim.api.nvim_buf_get_option( 0, vim.bo.filetype )
+						if (filetype == "alpha" or filetype == "oil" or filetype == "NvimTree") then
+							return ""
+						end
 						local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
 						if status == nil then
 							return ""
