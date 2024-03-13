@@ -11,7 +11,7 @@ vim.o.ts = 4
 vim.o.sw = 0 -- fallback to tabstop
 vim.o.wrap = false
 
-vim.o.laststatus = 3
+vim.opt.laststatus = 3
 
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticError', numhl = 'DiagnosticError'})
 vim.fn.sign_define('DiagnosticSignWarn',  { text = '', texthl = 'DiagnosticWarn' , numhl = 'DiagnosticWarn' })

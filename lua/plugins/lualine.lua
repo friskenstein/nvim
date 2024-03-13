@@ -13,6 +13,7 @@ return {
 			},
 			path = 1,
 			shorting_target = 25,
+			globalstatus = true,
 		},
 		extensions = {
 			--'oil',

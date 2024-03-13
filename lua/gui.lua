@@ -42,8 +42,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.cmd("hi! link TelescopeBorder FloatBorder")
 		vim.cmd("hi! link WhichKeyBorder FloatBorder")
 
-		vim.cmd("set laststatus=3")
-
 	end,
 })
 
