@@ -4,6 +4,8 @@ local _, actions = pcall(require, "telescope.actions")
 
 require('telescope').setup {
 	defaults = {
+		layout_strategy = 'vertical',
+		layout_config = { mirror = true },
 		prompt_prefix = "  ",
 		selection_caret = " ",
 		mappings = {

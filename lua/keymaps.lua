@@ -43,13 +43,13 @@ end, { desc = 'Find File' })
 
 require('which-key').register({
 	s = {
-		name = "Telescope Search ",
+		name = "Telescope [S]earch ",
 		b = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", "Grep current file" },
 		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-		c = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Colorschemes", },
+		c = { function() require('telescope.builtin').colorscheme {enable_preview = true} end, "Colorschemes" },
 		f = { "<cmd>Telescope find_files<cr>", "Files" },
-		h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-		H = { "<cmd>Telescope highlights<cr>", "Highlight groups" },
+		H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+		h = { "<cmd>Telescope highlights<cr>", "Highlight groups" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man pages" },
 		-- n = { "<cmd>Telescope notify<cr>", "Notifications" },
 		r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },

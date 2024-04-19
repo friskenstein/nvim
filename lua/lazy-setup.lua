@@ -23,8 +23,8 @@ require('lazy').setup({
 			transparent_background = true,
 		},
 		config = function(_, opts)
-			require("tokyodark").setup(opts) -- calling setup is optional
-			vim.cmd [[colorscheme tokyodark]]
+			require("witchcraft").setup(opts) -- calling setup is optional
+			vim.cmd [[colorscheme witchcraft]]
 		end,
 	},
 	{

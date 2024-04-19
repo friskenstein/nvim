@@ -98,7 +98,7 @@ return {
 							return "󱙻 "
 						end
 						if status == ' 0 ' then
-							return "󱚢 no suggestions"
+							return "󱚢 "
 						end
 						if status == ' * ' then
 							return "󱚠 "
