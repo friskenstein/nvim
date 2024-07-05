@@ -24,7 +24,7 @@ require('lazy').setup({
 		},
 		config = function(_, opts)
 			require("witchcraft").setup(opts) -- calling setup is optional
-			vim.cmd [[colorscheme witchcraft]]
+			-- vim.cmd [[colorscheme witchcraft]]
 		end,
 	},
 	{
@@ -32,7 +32,7 @@ require('lazy').setup({
 		lazy = false,
 		priority = 1000,
 		config = function()
-			--vim.cmd.colorscheme 'tokyonight-moon'
+			vim.cmd.colorscheme 'tokyonight-moon'
 		end,
 	},
 	-- Colorschemes
@@ -85,18 +85,32 @@ require('lazy').setup({
 			vim.keymap.set("n", "ySS", "<Plug>YSsurround")
 			-- conflicting with leap.nvim
 			--vim.keymap.set("x", "S", "<Plug>VSurround")
-			--vim.keymap.set("x", "gS", "<Plug>VgSurround")
-			vim.keymap.set("x", "gS", "<Plug>VSurround") -- NOTE: gS instead of default S
+			--vim.keymap.set("x", "gS", "<Plug>VgSurround") -- NOTE: gS instead of default S
+			vim.keymap.set("x", "s", "<Plug>VSurround")
+			vim.keymap.set("x", "S", "<Plug>VgSurround")
 		end,
 	},
 	{
 		'ggandor/leap.nvim',
 		config = function()
 			-- needs to load after vim-surround
-			require('leap').create_default_mappings()
+			--require('leap').create_default_mappings()
+			vim.keymap.set({'n', 'o'}, 's',  '<Plug>(leap-forward)')
+			vim.keymap.set({'n', 'o'}, 'S',  '<Plug>(leap-backward)')
+			vim.keymap.set({'n', 'o'}, 'gs',  '<Plug>(leap-from-window)')
+			-- vim.keymap.set({'n', 'x', 'o'}, ']]', '<Plug>(leap-forward)')
+			-- vim.keymap.set({'n', 'x', 'o'}, '[[', '<Plug>(leap-backward)')
+			-- vim.keymap.set({'n', 'x', 'o'}, '[]', '<Plug>(leap-from-window)')
+			-- vim.keymap.set({'n', 'x', 'o'}, '][', '<Plug>(leap-from-window)')
 		end
 	},
 
+	{
+		'rmagatti/goto-preview',
+		opts = {
+			default_mappings = true,
+		}
+	},
 
 	"chrisbra/csv.vim",
 	{

@@ -46,7 +46,23 @@ require('which-key').register({
 		name = "Telescope [S]earch ",
 		b = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", "Grep current file" },
 		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-		c = { function() require('telescope.builtin').colorscheme {enable_preview = true} end, "Colorschemes" },
+		c = { function()
+			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
+				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
+				"desert", "delek", "default", "darkblue", "blue" }
+			local target = vim.fn.getcompletion
+
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.fn.getcompletion = function()
+				return vim.tbl_filter(function(color)
+					return not vim.tbl_contains(builtins, color)
+				end, target("", "color"))
+			end
+
+			-- require("lazyvim.util").telescope("colorscheme", { enable_preview = true })()
+			require('telescope.builtin').colorscheme {enable_preview = true}
+			vim.fn.getcompletion = target
+		end, "Colorschemes" },
 		f = { "<cmd>Telescope find_files<cr>", "Files" },
 		H = { "<cmd>Telescope help_tags<cr>", "Help tags" },
 		h = { "<cmd>Telescope highlights<cr>", "Highlight groups" },
@@ -142,9 +158,9 @@ require('which-key').register({
 	},
 	u = {
 		name = "UI",
-		x = { "<cmd>set tabstop=2<cr>", "tabstop 2"},  --:set shiftwidth=2<cr>
-		y = { "<cmd>set tabstop=4<cr>", "tabstop 4"},  --  :set shiftwidth=4<cr>
-		z = { "<cmd>set tabstop=8<cr>", "tabstop 8"},    -- :set shiftwidth=8<cr>
+		x = { "<cmd>set tabstop=2<cr>", "tabstop 2"},
+		y = { "<cmd>set tabstop=4<cr>", "tabstop 4"},
+		z = { "<cmd>set tabstop=8<cr>", "tabstop 8"},
 		i = { "<cmd>IBLToggle<cr>", "Indent Lines" },
 		c = { function() vim.o.cursorline = not vim.o.cursorline end, "Cursorline" },
 		v = { function()
@@ -159,7 +175,16 @@ require('which-key').register({
 			vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })
 			print("Diagnostic underline: " .. (vim.diagnostic.config().underline and "on" or "off"))
 			end, "Diagnostic underline" },
-		w = { function() vim.o.list = not vim.o.list end, "Whitespace" },
+		w = { function() vim.o.list = not vim.o.list end, "Whitespace On/Off" },
+		W = { function()
+			if vim.o.listchars == "space:⋅,tab:› ,trail:,nbsp:+" then
+				vim.o.listchars = "tab:  ,trail:,nbsp:+,lead:"
+				print("Show leading / trailing space")
+			else
+				vim.o.listchars = "space:⋅,tab:› ,trail:,nbsp:+"
+				print("Show all whitespace")
+			end
+		end, "Whitespace Modes" },
 		m = { function ()
 			if vim.g.minimap_global_toggle then
 				vim.g.minimap_global_toggle = false
@@ -259,7 +284,7 @@ vim.keymap.set('v', "<S-Left>", "<Left>")
 vim.keymap.set('v', "<S-Right>", "<Right>")
 
 vim.keymap.set('n', "<Enter>", "o<Esc>")
-vim.keymap.set('n', "<S-Enter>", "O<Esc>")
+vim.keymap.set('n', "<S-Enter>", "<S-o><Esc>")
 
 -- Tab indenting
 vim.keymap.set('v', "<Tab>", ">gv")

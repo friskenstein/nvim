@@ -52,6 +52,9 @@ return {
 				},
 			},
 			confirm = {
+				position = {
+					row = '30%',
+				},
 				win_options = {
 					winhighlight = {
 						Normal = "NormalFloat",

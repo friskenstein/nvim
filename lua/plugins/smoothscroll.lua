@@ -4,7 +4,8 @@ return {
 	config = function()
 		require('neoscroll').setup({
 			-- All these keys will be mapped to their corresponding default scrolling animation
-			mappings = {'<C-u>', '<C-d>', 'zt', 'zz', 'zb'},
+			-- mappings = {'<C-u>', '<C-d>', 'zt', 'zz', 'zb'},
+			mappings = {'zt', 'zz', 'zb'},
 			hide_cursor = true,          -- Hide cursor while scrolling
 			stop_eof = true,             -- Stop at <EOF> when scrolling downwards
 			use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
@@ -17,8 +18,8 @@ return {
 
 		local t = {}
 		-- Syntax: t[keys] = {function, {function arguments}}
-		t['<C-u>'] = {'scroll', {'-vim.o.scroll', 'true', '200'}}
-		t['<C-d>'] = {'scroll', { 'vim.o.scroll', 'true', '200'}}
+		-- t['<C-u>'] = {'scroll', {'-vim.o.scroll', 'true', '200'}}
+		-- t['<C-d>'] = {'scroll', { 'vim.o.scroll', 'true', '200'}}
 		t['zt']    = {'zt', {'200'}}
 		t['zz']    = {'zz', {'200'}}
 		t['zb']    = {'zb', {'200'}}
