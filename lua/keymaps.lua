@@ -158,9 +158,9 @@ require('which-key').register({
 	},
 	u = {
 		name = "UI",
-		x = { "<cmd>set tabstop=2<cr>", "tabstop 2"},
-		y = { "<cmd>set tabstop=4<cr>", "tabstop 4"},
-		z = { "<cmd>set tabstop=8<cr>", "tabstop 8"},
+		x = { "<cmd>set tabstop=2<cr><cmd>set shiftwidth=0<cr><cmd>set noet<cr>", "tabstop 2"},
+		y = { "<cmd>set tabstop=4<cr><cmd>set shiftwidth=0<cr><cmd>set noet<cr>", "tabstop 4"},
+		z = { "<cmd>set tabstop=8<cr><cmd>set shiftwidth=0<cr><cmd>set noet<cr>", "tabstop 8"},
 		i = { "<cmd>IBLToggle<cr>", "Indent Lines" },
 		c = { function() vim.o.cursorline = not vim.o.cursorline end, "Cursorline" },
 		v = { function()
