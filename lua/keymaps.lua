@@ -49,7 +49,7 @@ require('which-key').register({
 		c = { function()
 			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
 				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
-				"desert", "delek", "default", "darkblue", "blue" }
+				"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu", "retrobox" }
 			local target = vim.fn.getcompletion
 
 			---@diagnostic disable-next-line: duplicate-set-field
