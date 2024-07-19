@@ -1,5 +1,5 @@
 return {
-	'Dedtec/lualine.nvim',
+	'friskenstein/lualine.nvim',
 	opts = {
 		options = {
 			icons_enabled = true,

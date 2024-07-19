@@ -18,7 +18,7 @@ require('lazy').setup({
 
 	-- Default colorscheme 
 	{
-		"Dedtec/witchcraft.nvim",
+		"friskenstein/witchcraft.nvim",
 		opts = {
 			transparent_background = true,
 		},
@@ -28,7 +28,7 @@ require('lazy').setup({
 		end,
 	},
 	{
-		"Dedtec/tokyonight.nvim",
+		"friskenstein/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -36,15 +36,15 @@ require('lazy').setup({
 		end,
 	},
 	-- Colorschemes
-	--'Dedtec/tokyonight.nvim',
-	'Dedtec/lunar.nvim',
-	'Dedtec/poimandres.nvim',
-	'Dedtec/oxocarbon.nvim',
-	'Dedtec/horizon.nvim',
-	'Dedtec/palenightfall.nvim',
-	'Dedtec/focus.nvim',
+	--'friskenstein/tokyonight.nvim',
+	'friskenstein/lunar.nvim',
+	'friskenstein/poimandres.nvim',
+	'friskenstein/oxocarbon.nvim',
+	'friskenstein/horizon.nvim',
+	'friskenstein/palenightfall.nvim',
+	'friskenstein/focus.nvim',
 	{
-		"Dedtec/neovim-ayu",
+		"friskenstein/neovim-ayu",
 		config = function ()
 			local colors = require('ayu.colors')
 			colors.generate(false)
@@ -61,7 +61,7 @@ require('lazy').setup({
 		end
 	},
 	{
-		"Dedtec/catppuccin",
+		"friskenstein/catppuccin",
 		config = function ()
 			require("catppuccin").setup({
 				transparent_background = true,
