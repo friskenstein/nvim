@@ -48,7 +48,7 @@ require('which-key').register({
 		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
 		c = { function()
 			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
-				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord",
+				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord", "morning",
 				"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu", "retrobox" }
 			local target = vim.fn.getcompletion
 
