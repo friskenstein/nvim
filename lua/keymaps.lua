@@ -47,7 +47,7 @@ require('which-key').register({
 		b = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", "Grep current file" },
 		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
 		c = { function()
-			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
+			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff", "habamax",
 				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord", "morning",
 				"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu", "retrobox" }
 			local target = vim.fn.getcompletion
@@ -79,7 +79,8 @@ require('which-key').register({
 		l = { "<cmd>Telescope resume<cr>", "Resume last search" },
 		s = { "<cmd>Telescope<cr>", "Select Telescope" },
 	},
-	a = {
+	a = { "<cmd>AerialToggle<cr>", "Aerial" },
+	A = {
 		name = "AI copilot",
 		A = { "<cmd>CodeiumAuto<cr>", "Auto" },
 		M = { "<cmd>CodeiumManual<cr>", "Manual" },
@@ -196,7 +197,7 @@ require('which-key').register({
 				require('mini.map').open()
 			end
 		end, 'Minimap' },
-		T = { function ()
+		t = { function ()
 			if vim.g.transparent_bg_toggle then
 				vim.g.transparent_bg_toggle = false
 				print('Transparent BG OFF')
@@ -205,7 +206,7 @@ require('which-key').register({
 				print('Transparent BG ON')
 			end
 		end, 'Transparent BG' },
-		t = { function ()
+		T = { function ()
 			if vim.g.transparent_floats_toggle then
 				vim.g.transparent_floats_toggle = false
 				print('Transparent floats OFF')

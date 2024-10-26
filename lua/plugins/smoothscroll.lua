@@ -1,4 +1,5 @@
 return {
+	--[[
 	"karb94/neoscroll.nvim",
 	event = "WinScrolled",
 	config = function()
@@ -26,4 +27,5 @@ return {
 
 		require('neoscroll.config').set_mappings(t)
 	end
+]]--
 }

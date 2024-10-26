@@ -7,31 +7,25 @@ return {
 		local header = {
 			type = "text",
 			val = {
-				[[          .                                                      .           ]],
-				[[        .n                   .                 .                  n.         ]],
-				[[  .   .dP                  dP                   9b                 9b.    .  ]],
-				[[ 4    qXb         .       dX                     Xb       .        dXp     t ]],
-				[[dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb]],
-				[[9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP]],
-				[[ 9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP ]],
-				[[  `9XXXXXXXXXXXXXXXXXXXXX"~   ~`OOO8b   d8OOO"~   ~`XXXXXXXXXXXXXXXXXXXXXP"  ]],
-				[[    `9XXXXXXXXXXXP" `9XX"   DIE    `98v8P"  HUMAN   `XXP" `9XXXXXXXXXXXP"    ]],
-				[[        ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~        ]],
-				[[                        )b.  .dbo.dP"`v"`9b.odb.  .dX(                       ]],
-				[[                      ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.                      ]],
-				[[                     dXXXXXXXXXXXP"   .   `9XXXXXXXXXXXb                     ]],
-				[[                    dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb                    ]],
-				[[                    9XXb"   `XXXXXb.dX|Xb.dXXXXX"   `dXXP                    ]],
-				[[                     `"      9XXXXXX(   )XXXXXXP      `"                     ]],
-				[[                              XXXX X.`v".X XXXX                              ]],
-				[[                              XP^X"`b   d"`X^XX                              ]],
-				[[                              X. 9  `   "  P )X                              ]],
-				[[                              `b  `       "  d"                              ]],
-				[[                               `             "                               ]],
+				[[                                                                           ]],
+				[[                                                                           ]],
+				[[     .          .                                                          ]],
+				[[   ';;,.        ::'                                                        ]],
+				[[ ,:::;,,        :ccc,                                                      ]],
+				[[,::c::,,,,.     :cccc,                               ,,                    ]],
+				[[,cccc:;;;;;.    cllll,                               db                    ]],
+				[[,cccc;.;;;;;,   cllll;                                                     ]],
+				[[:cccc; .;;;;;;. coooo;  .gP"Ya   ,pW"Wq.`7M'   `MF'`7MM  `7MMpMMMb.pMMMb.  ]],
+				[[;llll;   ,:::::'loooo; ,M'   Yb 6W'   `Wb VA   ,V    MM    MM    MM    MM  ]],
+				[[;llll:    ':::::loooo: 8M"""""" 8M     M8  VA ,V     MM    MM    MM    MM  ]],
+				[[:oooo:     .::::llodd: YM.    , YA.   ,A9   VVV      MM    MM    MM    MM  ]],
+				[[.;ooo:       ;cclooo:. .`Mbmmd'  `Ybmd9'     W     .JMML..JMML  JMML  JMML.]],
+				[[  .;oc        'coo;.                                                       ]],
+				[[    .'         .,.                                                         ]],
 			},
 			opts = {
 				position = "center",
-				hl = "Comment",
+				hl = "@function",
 			},
 		}
 
@@ -48,7 +42,7 @@ return {
 				cursor = 3,
 				width = 50,
 				align_shortcut = "right",
-				hl_shortcut = "@function",
+				hl_shortcut = "@function.builtin",
 			}
 			if keybind then
 				keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
@@ -71,6 +65,7 @@ return {
 		local buttons = {
 			type = "group",
 			val = {
+				{ type = "padding", val = 2 },
 				button("n", "  New File", ":ene!<CR>"),
 				button("f", "󰈞  Find File", ":Telescope find_files<CR>"),
 				button("t", "󰺯  Find Word", ":Telescope live_grep<CR>"),
@@ -78,10 +73,11 @@ return {
 				button("p", "󰄉  Recent Projects ", ":Telescope projects<CR>"),
 				button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
 				button("c", "  Configuration", ":Oil --float ~/.config/nvim<CR>"),
+				{ type = "padding", val = 2 },
 			},
 			opts = {
 				spacing = 1,
-				hl_shortcut = "@function",
+				hl_shortcut = "@function.builtin",
 			},
 		}
 
@@ -90,7 +86,7 @@ return {
 			val = "Neovim " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
 			opts = {
 				position = "center",
-				hl = "@function",
+				hl = "@function.builtin",
 			},
 		}
 
