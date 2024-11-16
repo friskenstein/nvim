@@ -76,7 +76,7 @@ return {
 				{ type = "padding", val = 2 },
 			},
 			opts = {
-				spacing = 1,
+				spacing = 0,
 				hl_shortcut = "@function.builtin",
 			},
 		}

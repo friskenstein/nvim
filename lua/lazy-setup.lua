@@ -45,6 +45,11 @@ require('lazy').setup({
 	'friskenstein/focus.nvim',
 	'oxfist/night-owl.nvim',
 	'EdenEast/nightfox.nvim',
+	'rebelot/kanagawa.nvim',
+	'navarasu/onedark.nvim',
+	'maxmx03/fluoromachine.nvim',
+	'dgox16/oldworld.nvim',
+	'rose-pine/neovim',
 	{
 		"friskenstein/neovim-ayu",
 		config = function ()
@@ -137,14 +142,14 @@ require('lazy').setup({
 						alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 					},
 					-- 󰄱  󰗡 󰝦  󰥪     󰴒 󰷈  󱇨 󱓦
-					TODO = { icon = " ", color = "hint" },
+					TODO = { icon = " ", color = "hint", alt = { "REFACTOR", "IMPLEMENT" } },
 					-- 
 					TAG = { icon = " ", color = "info", alt = { "BOOKMARK" }},
 					SECTION = { icon = "󰚟 ", color = "info"},
 					HACK = { icon = " ", color = "warning" },
-					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "CHECK", "INVESTIGATE" } },
 					PERF = { icon = "󰓅 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-					NOTE = { icon = " ", color = "info", alt = { "INFO" } },
+					NOTE = { icon = " ", color = "info", alt = { "INFO" } },
 					-- 󰂖
 					TEST = { icon = "󰙨󰤑", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 				},
