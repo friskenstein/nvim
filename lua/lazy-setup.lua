@@ -147,11 +147,12 @@ require('lazy').setup({
 					TAG = { icon = " ", color = "info", alt = { "BOOKMARK" }},
 					SECTION = { icon = "󰚟 ", color = "info"},
 					HACK = { icon = " ", color = "warning" },
-					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "CHECK", "INVESTIGATE" } },
+					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 					PERF = { icon = "󰓅 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
 					NOTE = { icon = " ", color = "info", alt = { "INFO" } },
 					-- 󰂖
 					TEST = { icon = "󰙨󰤑", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+					QUESTION = { icon = " ", color = "test", alt = { "CHECK", "RESEARCH", "INVESTIGATE" } },
 				},
 				colors = {
 					error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
