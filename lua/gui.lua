@@ -5,8 +5,9 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-vim.g.transparent_bg_toggle = true
-vim.g.transparent_floats_toggle = true
+vim.g.transparent_bg_toggle = false
+vim.g.transparent_floats_toggle = false
+vim.opt.background = 'dark'
 
 vim.api.nvim_create_autocmd("ColorScheme", {
 	pattern = "*",

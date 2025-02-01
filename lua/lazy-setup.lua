@@ -49,6 +49,8 @@ require('lazy').setup({
 	'navarasu/onedark.nvim',
 	'maxmx03/fluoromachine.nvim',
 	'dgox16/oldworld.nvim',
+	'projekt0n/github-nvim-theme',
+	'Mofiqul/vscode.nvim',
 	'rose-pine/neovim',
 	{
 		"friskenstein/neovim-ayu",

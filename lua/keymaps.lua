@@ -1,3 +1,25 @@
+if vim.g.neovide then
+    -- Put anything you want to happen only in Neovide here
+	vim.keymap.set('n', '<D-w>', ':q<CR>') -- Quit
+	vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
+	vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+	vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+	vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+	vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+	vim.g.neovide_scale_factor = 1.0
+	local change_scale_factor = function(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	end
+	vim.keymap.set("n", "<D-=>", function()
+		change_scale_factor(1.1)
+	end)
+	vim.keymap.set("n", "<D-->", function()
+		change_scale_factor(1/1.1)
+	end)
+
+	vim.g.neovide_input_macos_option_key_is_meta = 'both'
+end
 
 vim.keymap.set('v', 'i,', '<esc>T,vt,', {desc='inside commas'})
 vim.keymap.set('v', 'a,', '<esc>F,vf,', {desc='around commas'})
@@ -90,6 +112,7 @@ require('which-key').register({
 		d = { "<cmd>CodeiumDisable<cr>", "Disable" },
 		a = { "<cmd>CodeiumToggle<cr>", "Toggle" },
 	},
+	T = { ":tabe<cr>", "New Tab" },
 	t = {
 		name = "TODO & Terminal",
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Floating Terminal" },
@@ -139,8 +162,8 @@ require('which-key').register({
 					direction = "float",
 					float_opts = {
 						border = "none",
-						width = 100000,
-						height = 100000,
+						width = vim.o.columns,
+						height = vim.o.lines,
 					},
 					on_open = function(_)
 						vim.cmd "startinsert!"
@@ -197,6 +220,15 @@ require('which-key').register({
 				require('mini.map').open()
 			end
 		end, 'Minimap' },
+		b = { function ()
+			if vim.opt.background:get() == 'dark' then
+				vim.opt.background = 'light'
+				print('Light background')
+			else
+				vim.opt.background = 'dark'
+				print('Dark background')
+			end
+		end, 'Light / Dark Switch' },
 		t = { function ()
 			if vim.g.transparent_bg_toggle then
 				vim.g.transparent_bg_toggle = false

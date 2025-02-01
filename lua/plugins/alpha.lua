@@ -25,7 +25,7 @@ return {
 			},
 			opts = {
 				position = "center",
-				hl = "@function",
+				hl = "@function.builtin",
 			},
 		}
 
