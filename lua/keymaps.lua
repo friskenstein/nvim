@@ -140,7 +140,7 @@ require("which-key").add({
 -- 		d = { "<cmd>CodeiumDisable<cr>", "Disable" },
 -- 		a = { "<cmd>CodeiumToggle<cr>", "Toggle" },
 -- 	},
-	T = {"<leader>T", ":tabe<cr>", desc="New Tab" },
+	{"<leader>T", ":tabe<cr>", desc="New Tab" },
 -- 	t = {
 -- 		name = "TODO & Terminal",
 -- 		f = { "<cmd>ToggleTerm direction=float<cr>", "Floating Terminal" },
