@@ -200,7 +200,14 @@ cmp.setup {
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		--['<C-Space>'] = cmp.mapping.complete {},
-		['<CR>'] = function(fallback) fallback() end,
+		-- Smart <CR>: only confirm if something is selected
+		['<CR>'] = function(fallback)
+			if cmp.visible() and cmp.get_selected_entry() then
+				cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false })
+			else
+				fallback()
+			end
+		end,
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
