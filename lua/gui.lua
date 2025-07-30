@@ -5,8 +5,8 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
-vim.g.transparent_bg_toggle = false
-vim.g.transparent_floats_toggle = false
+vim.g.transparent_bg_toggle = true
+vim.g.transparent_floats_toggle = true
 vim.opt.background = 'dark'
 
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -37,6 +37,18 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 			vim.cmd("hi FloatBorder ctermbg=none guibg=none")
 			vim.cmd("hi FloatTitle ctermbg=none guibg=none")
 			vim.cmd("hi! link WhichKeyFloat NormalFloat")
+
+			vim.cmd("hi NotifyBackground ctermbg=none guibg=none")
+			vim.cmd("hi NotifyINFOBody ctermbg=none guibg=none")
+			vim.cmd("hi NotifyINFOBorder ctermbg=none guibg=none")
+			vim.cmd("hi NotifyERRORBody ctermbg=none guibg=none")
+			vim.cmd("hi NotifyERRORBorder ctermbg=none guibg=none")
+			vim.cmd("hi NotifyDEBUGBody ctermbg=none guibg=none")
+			vim.cmd("hi NotifyDEBUGBorder ctermbg=none guibg=none")
+			vim.cmd("hi NotifyTRACEBody ctermbg=none guibg=none")
+			vim.cmd("hi NotifyTRACEBorder ctermbg=none guibg=none")
+			vim.cmd("hi NotifyWARNBody ctermbg=none guibg=none")
+			vim.cmd("hi NotifyWARNBorder ctermbg=none guibg=none")
 		end
 
 		vim.cmd("hi! link TelescopeNormal NormalFloat")

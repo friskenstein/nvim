@@ -119,7 +119,7 @@ require("which-key").add({
 -- 		d = { "<cmd>CodeiumDisable<cr>", "Disable" },
 -- 		a = { "<cmd>CodeiumToggle<cr>", "Toggle" },
 -- 	},
-	{"<leader>T", ":tabe<cr>", desc="New Tab" },
+	{"<leader>t", ":tabe<cr>", desc="New Tab" },
 -- 	t = {
 -- 		name = "TODO & Terminal",
 -- 		f = { "<cmd>ToggleTerm direction=float<cr>", "Floating Terminal" },
@@ -358,11 +358,8 @@ vim.keymap.set("t", "<A-h>", "<cmd>vertical resize -2<CR>", {silent = true})
 vim.keymap.set("t", "<A-l>", "<cmd>vertical resize +2<CR>", {silent = true})
 
 -- Different paste behaviour
--- lvim.keys.normal_mode["p"] = [["0p]]
--- lvim.keys.normal_mode["P"] = [["0P]]
--- lvim.keys.visual_mode["p"] = [["0p]]
--- lvim.keys.visual_mode["P"] = [["0P]]
-
+vim.keymap.set('v', 'p', '"0p')
+vim.keymap.set('v', 'P', '"0P')
 
 
 -- unmap a default keymapping

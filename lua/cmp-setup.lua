@@ -191,7 +191,7 @@ cmp.setup {
 		end,
 	},
 	completion = {
-		completeopt = 'menu,menuone,noinsert',
+		completeopt = 'menu,menuone,noinsert,noselect',
 		-- keyword_length = 2,
 	},
 	mapping = cmp.mapping.preset.insert {
@@ -200,10 +200,7 @@ cmp.setup {
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		--['<C-Space>'] = cmp.mapping.complete {},
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		},
+		['<CR>'] = function(fallback) fallback() end,
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -222,6 +219,13 @@ cmp.setup {
 				fallback()
 			end
 		end, { 'i', 's' }),
+		-- Make arrow keys behave normally (move cursor) even when cmp menu is open
+		['<Down>'] = function(fallback)
+			fallback() -- fallback to normal <Down> behavior
+		end,
+		['<Up>'] = function(fallback)
+			fallback() -- fallback to normal <Up> behavior
+		end,
 	},
 	sources = {
 		{ name = 'nvim_lsp' },
