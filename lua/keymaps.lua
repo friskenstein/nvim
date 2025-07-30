@@ -24,6 +24,9 @@ if vim.g.neovide then
 	vim.opt.guicursor = "n-v:block-blinkwait500-blinkon600-blinkoff400,i-c:ver25-blinkwait500-blinkon600-blinkoff400"
 end
 
+
+vim.keymap.set('n', '-', MiniFiles.open, {desc = 'Open parent directory'})
+
 vim.keymap.set('v', 'i,', '<esc>T,vt,', {desc='inside commas'})
 vim.keymap.set('v', 'a,', '<esc>F,vf,', {desc='around commas'})
 vim.keymap.set('v', 'i.', '<esc>T.vt.', {desc='inside periods'})
@@ -95,7 +98,7 @@ require("which-key").add({
 	{"<leader>sH", "<cmd>Telescope help_tags<cr>", desc="Help tags" },
 	{"<leader>sh", "<cmd>Telescope highlights<cr>", desc="Highlight groups" },
 	{"<leader>sM", "<cmd>Telescope man_pages<cr>", desc="Man pages" },
-	-- 		-- n = { "<cmd>Telescope notify<cr>", "Notifications" },
+	{"<leader>sn", "<cmd>Telescope notify<cr>", desc="Notifications" },
 	{"<leader>sr", "<cmd>Telescope oldfiles<cr>", desc="Recent files" },
 	{"<leader>sR", "<cmd>Telescope registers<cr>", desc="Registers" },
 	{"<leader>st", "<cmd>Telescope live_grep<cr>", desc="Text Grep" },

@@ -20,6 +20,6 @@ return {
 	},
 	config = function(_, opts)
 		require('oil').setup(opts)
-		vim.keymap.set('n', '-', require('oil').open_float, {desc = 'Open parent directory'})
+		--vim.keymap.set('n', '-', require('oil').open_float, {desc = 'Open parent directory'})
 	end
 }
