@@ -105,7 +105,7 @@ return {
 						end
 						return "󱚤 " .. status
 					end,
-					color = { fg = "#09b6a2" },
+					color = { fg = "#33373D" },
 				},
 			},
 			lualine_x = {
