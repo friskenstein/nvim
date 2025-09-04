@@ -14,11 +14,12 @@ local c = {
 	deep = '#17181C',
 	black = '#33373D',
 	grey = '#4a5057', -- ansi black
+	light_grey = '#676D82',
 	fg = '#9ba2c6',
 	red = '#ff1a69',
 	green = '#00ffaa',
 	yellow = '#ffa24e',
-	blue = '#516fff',
+	blue = '#8900ff',
 	magenta = '#ff63f4',
 	cyan = '#00ffff',
 	white = '#a0a8cd',
@@ -27,10 +28,11 @@ local c = {
 
 local colors = {
 	bg = c.bg,
-	fg = c.fg,
 	deep = c.deep,
 	black = c.black,
 	grey = c.grey,
+	light_grey = c.light_grey,
+	fg = c.fg,
 	-- colors
 	red = c.red,
 	green = c.green,
@@ -58,8 +60,7 @@ local colors = {
 	comment = c.black,
 	gutter_fg = c.black,
 	lavender = c.magenta,
-	menu = c.black,
-	nontext = c.black,
+	nontext = c.deep,
 	selection = c.deep,
 	visual = c.deep,
 	-- effects
@@ -146,8 +147,8 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	Macro = { fg = colors.purple },
 	MatchParen = { fg = colors.orange, bold = true },
 	NonText = { fg = colors.nontext },
-	Normal = { fg = colors.grey, bg = colors.bg },
-	NormalFloat = { fg = colors.grey, bg = colors.bg },
+	Normal = { fg = colors.light_grey, bg = colors.bg },
+	NormalFloat = { fg = colors.light_grey, bg = colors.bg },
 	Number = { fg = colors.orange },
 	Pmenu = { fg = colors.fg, bg = colors.transparent_black },
 	PmenuSbar = { bg = colors.black },
