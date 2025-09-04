@@ -45,14 +45,7 @@ require('lazy').setup({
 	'friskenstein/horizon.nvim',
 	'friskenstein/palenightfall.nvim',
 	'friskenstein/focus.nvim',
-	'oxfist/night-owl.nvim',
-	'EdenEast/nightfox.nvim',
-	'rebelot/kanagawa.nvim',
-	'navarasu/onedark.nvim',
-	'maxmx03/fluoromachine.nvim',
-	'dgox16/oldworld.nvim',
 	'projekt0n/github-nvim-theme',
-	'Mofiqul/vscode.nvim',
 	'rose-pine/neovim',
 	{
 		"friskenstein/neovim-ayu",
@@ -521,8 +514,18 @@ require('lazy').setup({
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
 				preset = 'none',
-				['<Tab>'] = { 'insert_next' },
-				['<S-Tab>'] = { 'insert_prev' },
+				['<Tab>'] = {
+					function(cmp)
+						if cmp.is_visible() then return cmp.insert_next() end
+					end,
+					"fallback"
+				},
+				['<S-Tab>'] = {
+					function(cmp)
+						if cmp.is_visible() then return cmp.insert_prev() end
+					end,
+					"fallback"
+				},
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 			},
@@ -533,9 +536,14 @@ require('lazy').setup({
 			},
 
 			completion = {
+				list = {
+					selection = {
+						preselect = false,
+					},
+				},
 				-- By default, you may press `<c-space>` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = false, auto_show_delay_ms = 500 },
+				documentation = { auto_show = true, auto_show_delay_ms = 500 },
 			},
 
 			sources = {
