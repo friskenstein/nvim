@@ -267,6 +267,7 @@ require("which-key").add({
 -- 		-- INFO: more in ./lsp-setup.lua
 	{"<leader>l", group="LSP"},
 		{"<leader>ld", "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", desc="Buffer Diagnostics" },
+		{"<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc="Code Action" },
 		{"<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc="Format" },
 		{"<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc="Next Diagnostic ]d", },
 		{"<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc="Prev Diagnostic [d", },
