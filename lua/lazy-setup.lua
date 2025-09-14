@@ -14,7 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.cmd.colorscheme 'friskenstein-io'
+vim.cmd.colorscheme 'chiaroscuro-modern'
 
 require('lazy').setup({
 

@@ -6,24 +6,26 @@ if vim.fn.exists 'syntax_on' then
 	vim.cmd.syntax 'reset'
 end
 vim.o.termguicolors = true
-vim.g.colors_name = 'friskenstein-io'
+vim.g.colors_name = 'chiaroscuro-light'
 
 -- primary colors
 local c = {
-	bg = '#050508',
-	deep = '#17181C',
-	black = '#33373D',
-	grey = '#4a5057', -- ansi black
-	light_grey = '#676D82',
-	fg = '#9ba2c6',
-	red = '#ff1a69',
-	green = '#00ffaa',
-	yellow = '#ffa24e',
-	blue = '#8900ff',
-	magenta = '#ff63f4',
-	cyan = '#00ffff',
+	bg = '#ffffff', -- '#050508',
+	-- fg = '#050508', -- '#9ba2c6',
+	fg = '#17181C',
+	-- light_grey = '#33373D',
+	light_grey = '#4a5057', -- ansi black
+	grey = '#676D82',
+	black = '#9ba2c6',
+	deep = '#CDD1E3',
+	red = '#8B1943', -- '#ff1a69',
+	green = '#0C8C63',-- '#00ffaa',
+	yellow = '#8B5D35', -- '#ffa24e',
+	blue = '#500C8E',--'#8900ff',
+	magenta = '#8B3E88',--'#ff63f4',
+	cyan = '#0C8C8E', -- '#00ffff',
 	white = '#a0a8cd',
-	bold = '#1abc9c',
+	bold = '#196A5C', -- '#1abc9c',
 }
 
 local colors = {
@@ -42,7 +44,6 @@ local colors = {
 	cyan = c.cyan,
 	white = c.white,
 	-- other colors
-	purple = c.blue,
 	fuchsia = c.magenta,
 	orange = c.yellow,
 	pink = c.magenta,
@@ -64,13 +65,14 @@ local colors = {
 	selection = c.deep,
 	visual = c.deep,
 	-- effects
-	transparent_black = c.deep,
-	transparent_blue = '#0D1123',
-	transparent_cyan = '#042123',
-	transparent_green = '#04211A',
-	transparent_red = '#210713',
-	transparent_yellow = '#211610',
-	transparent_magenta = '#210F22',
+	transparent_black   = c.deep,
+	transparent_blue    = '#F9F1FF', -- '#F2E3FF',
+	transparent_cyan    = '#EAFFFF', -- '#E3FFFF',
+	transparent_green   = '#F1FFFB', -- '#E3FFF6',
+	transparent_red     = '#FFF3F7', -- '#FFE6EE',
+	transparent_yellow  = '#FFF8F0', -- '#FFF5EB',
+	transparent_magenta = '#FFF2FE', -- '#FFEEFE',
+	transparent_bold    = '#F3FCFA', -- '#E6F8F4',
 }
 
 -- Terminal colors.
@@ -98,7 +100,7 @@ vim.g.terminal_color_foreground = colors.fg
 ---@type table<string, vim.api.keyset.highlight>
 local statusline_groups = {}
 for mode, color in pairs {
-	Normal = 'purple',
+	Normal = 'blue',
 	Pending = 'pink',
 	Visual = 'yellow',
 	Insert = 'green',
@@ -117,8 +119,8 @@ statusline_groups = vim.tbl_extend('error', statusline_groups, {
 ---@type table<string, vim.api.keyset.highlight>
 local groups = vim.tbl_extend('error', statusline_groups, {
 	-- Builtins.
-	Boolean = { fg = colors.yellow },
-	Character = { fg = colors.green },
+	Boolean = { fg = colors.yellow, bg = colors.transparent_yellow },
+	Character = { fg = colors.green, bg = colors.transparent_green },
 	ColorColumn = { bg = colors.selection },
 	Comment = { fg = colors.comment, italic = true },
 	Conceal = { fg = colors.comment },
@@ -129,22 +131,22 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	CursorColumn = { bg = colors.selection },
 	CursorLine = { bg = colors.selection },
 	CursorLineNr = { fg = colors.comment, bold = true },
-	Define = { fg = colors.purple },
-	Directory = { fg = colors.blue },
+	Define = { fg = colors.blue, bg = colors.transparent_blue },
+	Directory = { fg = colors.blue, bg = colors.transparent_blue },
 	Delimiter = { fg = colors.grey },
 	EndOfBuffer = { fg = colors.bg },
 	Error = { fg = colors.bright_red },
 	ErrorMsg = { fg = colors.bright_red },
 	FoldColumn = {},
 	Folded = { bg = colors.transparent_black },
-	Function = { fg = colors.blue },
-	Identifier = { fg = colors.magenta },
+	Function = { fg = colors.blue, bg = colors.transparent_blue },
+	Identifier = { fg = colors.magenta, bg = colors.transparent_magenta },
 	IncSearch = { link = 'CurSearch' },
-	Include = { fg = colors.purple },
-	Keyword = { fg = colors.purple },
-	Label = { fg = colors.blue },
+	Include = { fg = colors.blue, bg = colors.transparent_blue },
+	Keyword = { fg = colors.blue, bg = colors.transparent_blue },
+	Label = { fg = colors.blue, bg = colors.transparent_blue },
 	LineNr = { fg = colors.comment },
-	Macro = { fg = colors.purple },
+	Macro = { fg = colors.blue, bg = colors.transparent_blue },
 	MatchParen = { fg = colors.orange, bold = true },
 	NonText = { fg = colors.nontext },
 	Normal = { fg = colors.light_grey, bg = colors.bg },
@@ -154,62 +156,62 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	PmenuSbar = { bg = colors.black },
 	PmenuSel = { bg = colors.selection },
 	PmenuThumb = { bg = colors.black },
-	PreCondit = { fg = colors.cyan },
-	PreProc = { fg = colors.cyan },
-	Question = { fg = colors.blue },
-	Repeat = { fg = colors.purple },
+	PreCondit = { fg = colors.cyan, bg = colors.transparent_cyan },
+	PreProc = { fg = colors.cyan, bg = colors.transparent_cyan },
+	Question = { fg = colors.blue, bg = colors.transparent_blue },
+	Repeat = { fg = colors.blue, bg = colors.transparent_blue },
 	Search = { fg = colors.fg, bg = colors.blue },
 	SignColumn = { fg = colors.comment },
-	Special = { fg = colors.green, italic = true },
+	Special = { fg = colors.green, bg = colors.transparent_green, italic = true },
 	SpecialComment = { fg = colors.comment, italic = true },
 	SpecialKey = { fg = colors.nontext },
 	SpellBad = { sp = colors.bright_red, underline = true },
 	SpellCap = { sp = colors.yellow, underline = true },
 	SpellLocal = { sp = colors.yellow, underline = true },
 	SpellRare = { sp = colors.yellow, underline = true },
-	Statement = { fg = colors.purple },
+	Statement = { fg = colors.blue, bg = colors.transparent_blue },
 	StatusLine = { fg = colors.fg, bg = colors.bg },
 	StorageClass = { fg = colors.pink },
-	Structure = { fg = colors.green },
-	String = { fg = colors.bold },
-	Substitute = { fg = colors.bg, bg = colors.red, bold = true },
-	Title = { fg = colors.blue, bold = true },
-	Todo = { fg = colors.purple, bold = true, italic = true },
-	Type = { fg = colors.cyan },
+	Structure = { fg = colors.green, bg = colors.transparent_green },
+	String = { fg = colors.bold, bg = colors.transparent_bold },
+	Substitute = { fg = colors.bg, bg = colors.transparent_red, bold = true },
+	Title = { fg = colors.blue, bg = colors.transparent_blue, bold = true },
+	Todo = { fg = colors.blue, bg = colors.transparent_blue, bold = true, italic = true },
+	Type = { fg = colors.cyan, bg = colors.transparent_cyan },
 	TypeDef = { link = 'Type' },
 	Underlined = { underline = true },
 	VertSplit = { fg = colors.comment },
 	Visual = { bg = colors.visual },
 	VisualNOS = { fg = colors.visual },
-	WarningMsg = { fg = colors.yellow },
+	WarningMsg = { fg = colors.yellow, bg = colors.transparent_yellow },
 	WildMenu = { bg = colors.transparent_black },
 
 	-- Treesitter.
 	['@error'] = { fg = colors.bright_red },
 	['@keyword.function.ruby'] = { fg = colors.pink },
 	['@keyword.include'] = { fg = colors.pink },
-	['@markup.link.uri'] = { fg = colors.yellow, italic = true },
+	['@markup.link.uri'] = { fg = colors.yellow, bg = colors.transparent_yellow, italic = true },
 	['@parameter.reference'] = { fg = colors.orange },
-	['@string.special.symbol'] = { fg = colors.purple },
-	['@structure'] = { fg = colors.purple },
+	['@string.special.symbol'] = { fg = colors.blue, bg = colors.transparent_blue },
+	['@structure'] = { fg = colors.blue, bg = colors.transparent_blue },
 
 	-- Semantic tokens.
-	['@class'] = { fg = colors.cyan },
-	['@decorator'] = { fg = colors.cyan },
-	['@enum'] = { fg = colors.cyan },
-	['@enumMember'] = { fg = colors.purple },
-	['@event'] = { fg = colors.cyan },
-	['@interface'] = { fg = colors.cyan },
-	['@lsp.type.class'] = { fg = colors.cyan },
-	['@lsp.type.function'] = { fg = colors.green },
-	['@lsp.type.macro'] = { fg = colors.cyan },
-	['@lsp.type.method'] = { fg = colors.green },
-	['@lsp.type.struct'] = { fg = colors.cyan },
+	['@class'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@decorator'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@enum'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@enumMember'] = { fg = colors.blue, bg = colors.transparent_blue },
+	['@event'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@interface'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@lsp.type.class'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@lsp.type.function'] = { fg = colors.green, bg = colors.transparent_green },
+	['@lsp.type.macro'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@lsp.type.method'] = { fg = colors.green, bg = colors.transparent_green },
+	['@lsp.type.struct'] = { fg = colors.cyan, bg = colors.transparent_cyan },
 	['@lsp.type.type'] = { fg = colors.bright_cyan },
-	['@modifier'] = { fg = colors.cyan },
-	['@regexp'] = { fg = colors.yellow },
-	['@struct'] = { fg = colors.cyan },
-	['@typeParameter'] = { fg = colors.cyan },
+	['@modifier'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@regexp'] = { fg = colors.yellow, bg = colors.transparent_yellow },
+	['@struct'] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	['@typeParameter'] = { fg = colors.cyan, bg = colors.transparent_cyan },
 
 
 	["@annotation"] = { link = "PreProc" },
@@ -258,12 +260,12 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@markup.strikethrough"] = { strikethrough = true },
 	["@markup.underline"] = { underline = true },
 	["@markup.heading"] = { link = "Title" },
-	["@comment.note"] = { fg = colors.cyan },
-	["@comment.error"] = { fg = colors.red },
-	["@comment.hint"] = { fg = colors.cyan },
-	["@comment.info"] = { fg = colors.cyan },
-	["@comment.warning"] = { fg = colors.yellow },
-	["@comment.todo"] = { fg = colors.cyan },
+	["@comment.note"] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	["@comment.error"] = { fg = colors.red, bg = colors.transparent_red },
+	["@comment.hint"] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	["@comment.info"] = { fg = colors.cyan, bg = colors.transparent_cyan },
+	["@comment.warning"] = { fg = colors.yellow, bg = colors.transparent_yellow },
+	["@comment.todo"] = { fg = colors.cyan, bg = colors.transparent_cyan },
 	["@markup.link.url"] = { link = "Underlined" },
 	["@type"] = { link = "Type" },
 	["@type.definition"] = { link = "Typedef" },
@@ -277,43 +279,43 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	--- Punctuation
 	["@punctuation.delimiter"] = { fg = colors.blue }, -- For delimiters ie: `.`
 	["@punctuation.bracket"] = { fg = colors.grey },   -- For brackets and parens.
-	["@punctuation.special"] = { fg = colors.blue },   -- For special symbols (e.g. `{}` in string interpolation)
-	["@markup.list"] = { fg = colors.blue },           -- For special punctutation that does not fall in the catagories before.
+	["@punctuation.special"] = { fg = colors.blue, bg = colors.transparent_blue },   -- For special symbols (e.g. `{}` in string interpolation)
+	["@markup.list"] = { fg = colors.blue, bg = colors.transparent_blue },           -- For special punctutation that does not fall in the catagories before.
 	["@markup.list.markdown"] = { fg = colors.orange, bold = true },
 
 	--- Literals
-	["@string.documentation"] = { fg = colors.yellow },
-	["@string.regexp"] = { fg = colors.blue },    -- For regexes.
-	["@string.escape"] = { fg = colors.magenta }, -- For escape characters within a string.
+	["@string.documentation"] = { fg = colors.yellow, bg = colors.transparent_yellow },
+	["@string.regexp"] = { fg = colors.blue, bg = colors.transparent_blue },    -- For regexes.
+	["@string.escape"] = { fg = colors.magenta, bg = colors.transparent_magenta }, -- For escape characters within a string.
 
 	--- Functions
-	["@constructor"] = { fg = colors.magenta },               -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-	["@variable.parameter"] = { fg = colors.yellow },         -- For parameters of a function.
-	["@variable.parameter.builtin"] = { fg = colors.yellow }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
+	["@constructor"] = { fg = colors.magenta, bg = colors.transparent_magenta },               -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+	["@variable.parameter"] = { fg = colors.yellow, bg = colors.transparent_yellow },         -- For parameters of a function.
+	["@variable.parameter.builtin"] = { fg = colors.yellow, bg = colors.transparent_yellow }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
 
 	--- Keywords
-	["@keyword"] = { fg = colors.purple, italic = true }, -- For keywords that don't fall in previous categories.
-	["@keyword.function"] = { fg = colors.magenta },      -- For keywords used to define a fuction.
+	["@keyword"] = { fg = colors.blue, bg = colors.transparent_blue, italic = true }, -- For keywords that don't fall in previous categories.
+	["@keyword.function"] = { fg = colors.magenta, bg = colors.transparent_magenta },      -- For keywords used to define a fuction.
 
-	["@label"] = { fg = colors.blue },                    -- For labels: `label:` in C and `:label:` in Lua.
+	["@label"] = { fg = colors.blue, bg = colors.transparent_blue },                    -- For labels: `label:` in C and `:label:` in Lua.
 
 	--- Types
-	["@type.builtin"] = { fg = colors.blue },
-	["@variable.member"] = { fg = colors.green }, -- For fields.
-	["@property"] = { fg = colors.green },
+	["@type.builtin"] = { fg = colors.blue, bg = colors.transparent_blue },
+	["@variable.member"] = { fg = colors.green, bg = colors.transparent_green }, -- For fields.
+	["@property"] = { fg = colors.green, bg = colors.transparent_green },
 
 	--- Identifiers
 	["@variable"] = { fg = colors.fg },           -- Any variable name that does not have another highlight.
 	["@variable.builtin"] = { fg = colors.grey }, -- Variable names that are defined by the languages, like `this` or `self`.
-	["@module.builtin"] = { fg = colors.red },    -- Variable names that are defined by the languages, like `this` or `self`.
+	["@module.builtin"] = { fg = colors.red, bg = colors.transparent_red },    -- Variable names that are defined by the languages, like `this` or `self`.
 
 	--- Text
-	-- ["@markup.raw.markdown"] = { fg = colors.blue },
+	-- ["@markup.raw.markdown"] = { fg = colors.blue, bg = colors.transparent_blue },
 	["@markup.raw.markdown_inline"] = { bg = colors.terminal_black, fg = c.blue },
-	["@markup.link"] = { fg = colors.cyan },
+	["@markup.link"] = { fg = colors.cyan, bg = colors.transparent_cyan },
 
-	["@markup.list.unchecked"] = { fg = colors.blue }, -- For brackets and parens.
-	["@markup.list.checked"] = { fg = colors.green },  -- For brackets and parens.
+	["@markup.list.unchecked"] = { fg = colors.blue, bg = colors.transparent_blue }, -- For brackets and parens.
+	["@markup.list.checked"] = { fg = colors.green, bg = colors.transparent_green },  -- For brackets and parens.
 
 	["@diff.plus"] = { link = "DiffAdd" },
 	["@diff.minus"] = { link = "DiffDelete" },
@@ -322,8 +324,8 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@module"] = { link = "Include" },
 
 	-- tsx
-	["@tag.tsx"] = { fg = colors.red },
-	["@constructor.tsx"] = { fg = colors.blue },
+	["@tag.tsx"] = { fg = colors.red, bg = colors.transparent_red },
+	["@constructor.tsx"] = { fg = colors.blue, bg = colors.transparent_blue },
 	["@tag.delimiter.tsx"] = { link = 'Delimiter' },
 
 	-- LSP Semantic Token Groups
@@ -337,7 +339,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@lsp.type.escapeSequence"] = { link = "@string.escape" },
 	["@lsp.type.formatSpecifier"] = { link = "@markup.list" },
 	["@lsp.type.generic"] = { link = "@variable" },
-	["@lsp.type.interface"] = { fg = colors.blue },
+	["@lsp.type.interface"] = { fg = colors.blue, bg = colors.transparent_blue },
 	["@lsp.type.keyword"] = { link = "@keyword" },
 	["@lsp.type.lifetime"] = { link = "@keyword.storage" },
 	["@lsp.type.namespace"] = { link = "@module" },
@@ -362,8 +364,8 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@lsp.typemod.operator.injected"] = { link = "@operator" },
 	["@lsp.typemod.string.injected"] = { link = "@string" },
 	["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
-	["@lsp.typemod.type.defaultLibrary"] = { fg = colors.blue },
-	["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = colors.blue },
+	["@lsp.typemod.type.defaultLibrary"] = { fg = colors.blue, bg = colors.transparent_blue },
+	["@lsp.typemod.typeAlias.defaultLibrary"] = { fg = colors.blue, bg = colors.transparent_blue },
 	["@lsp.typemod.variable.callable"] = { link = "@function" },
 	["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
 	["@lsp.typemod.variable.injected"] = { link = "@variable" },
@@ -375,13 +377,13 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 
 	-- LSP.
 	DiagnosticDeprecated = { strikethrough = true, fg = colors.fg },
-	DiagnosticError = { fg = colors.red },
-	DiagnosticFloatingError = { fg = colors.red },
-	DiagnosticFloatingHint = { fg = colors.cyan },
-	DiagnosticFloatingInfo = { fg = colors.cyan },
-	DiagnosticFloatingWarn = { fg = colors.yellow },
-	DiagnosticHint = { fg = colors.cyan },
-	DiagnosticInfo = { fg = colors.cyan },
+	DiagnosticError = { fg = colors.red, bg = colors.transparent_red },
+	DiagnosticFloatingError = { fg = colors.red, bg = colors.transparent_red },
+	DiagnosticFloatingHint = { fg = colors.cyan, bg = colors.transparent_cyan },
+	DiagnosticFloatingInfo = { fg = colors.cyan, bg = colors.transparent_cyan },
+	DiagnosticFloatingWarn = { fg = colors.yellow, bg = colors.transparent_yellow },
+	DiagnosticHint = { fg = colors.cyan, bg = colors.transparent_cyan },
+	DiagnosticInfo = { fg = colors.cyan, bg = colors.transparent_cyan },
 	DiagnosticUnderlineError = { undercurl = true, sp = colors.red },
 	DiagnosticUnderlineHint = { undercurl = true, sp = colors.cyan },
 	DiagnosticUnderlineInfo = { undercurl = true, sp = colors.cyan },
@@ -391,8 +393,8 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	DiagnosticVirtualTextHint = { fg = colors.cyan, bg = colors.transparent_cyan },
 	DiagnosticVirtualTextInfo = { fg = colors.cyan, bg = colors.transparent_cyan },
 	DiagnosticVirtualTextWarn = { fg = colors.yellow, bg = colors.transparent_yellow },
-	DiagnosticWarn = { fg = colors.yellow },
-	LspCodeLens = { fg = colors.cyan },
+	DiagnosticWarn = { fg = colors.yellow, bg = colors.transparent_yellow },
+	LspCodeLens = { fg = colors.cyan, bg = colors.transparent_cyan },
 	LspFloatWinBorder = { fg = colors.comment },
 	LspInlayHint = { fg = colors.lavender, italic = true },
 	LspReferenceRead = { bg = colors.transparent_blue },
@@ -441,7 +443,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	DiffChange = { fg = colors.blue, bg = colors.transparent_blue },
 	DiffDelete = { fg = colors.red, bg = colors.transparent_red },
 	DiffText = { fg = colors.orange, bg = colors.transparent_yellow, bold = true },
-	DiffviewFolderSign = { fg = colors.cyan },
+	DiffviewFolderSign = { fg = colors.cyan, bg = colors.transparent_cyan },
 	DiffviewNonText = { fg = colors.comment },
 	diffAdded = { fg = colors.bright_green, bold = true },
 	diffChanged = { fg = colors.bright_blue, bold = true },
@@ -452,7 +454,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 
 	-- Command line.
 	MoreMsg = { fg = colors.bright_white, bold = true },
-	MsgArea = { fg = colors.cyan },
+	MsgArea = { fg = colors.cyan, bg = colors.transparent_cyan },
 	MsgSeparator = { fg = colors.comment },
 
 	-- Winbar styling.
@@ -466,7 +468,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 
 	-- Gitsigns.
 	GitSignsAdd = { fg = colors.bright_green },
-	GitSignsChange = { fg = colors.blue },
+	GitSignsChange = { fg = colors.blue, bg = colors.transparent_blue },
 	GitSignsDelete = { fg = colors.bright_red },
 	GitSignsStagedAdd = { fg = colors.orange },
 	GitSignsStagedChange = { fg = colors.orange },
@@ -476,16 +478,16 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	NvimGitLinkerHighlightTextObject = { link = 'Visual' },
 
 	-- Bufferline.
-	BufferLineBufferSelected = { bg = colors.bg, underline = true, sp = colors.purple },
+	BufferLineBufferSelected = { bg = colors.bg, underline = true, sp = colors.blue },
 	BufferLineFill = { bg = colors.bg },
 	TabLine = { fg = colors.comment, bg = colors.bg },
 	TabLineFill = { bg = colors.bg },
-	TabLineSel = { bg = colors.purple },
+	TabLineSel = { bg = colors.blue },
 
 
-	LeapMatch = { bg = colors.red, fg = colors.fg, bold = true },
-	LeapLabelPrimary = { fg = colors.red, bold = true },
-	LeapLabelSecondary = { fg = colors.green, bold = true },
+	LeapMatch = { bg = colors.transparent_red, fg = colors.fg, bold = true },
+	LeapLabelPrimary = { fg = colors.red, bg = colors.transparent_red, bold = true },
+	LeapLabelSecondary = { fg = colors.green, bg = colors.transparent_green, bold = true },
 	LeapBackdrop = { fg = colors.comment },
 
 	-- When triggering flash, use a white font and make everything in the backdrop italic.
@@ -493,8 +495,8 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	FlashPrompt = { link = 'Normal' },
 
 	-- Make these titles more visible.
-	MiniClueTitle = { bold = true, fg = colors.cyan },
-	MiniFilesTitleFocused = { bold = true, fg = colors.cyan },
+	MiniClueTitle = { bold = true, fg = colors.cyan, bg = colors.transparent_cyan },
+	MiniFilesTitleFocused = { bold = true, fg = colors.cyan, bg = colors.transparent_cyan },
 
 	-- Nicer yanky highlights.
 	YankyPut = { link = 'Visual' },
@@ -513,7 +515,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	FzfLuaSearch = { bg = colors.transparent_red },
 
 	-- Links.
-	HighlightUrl = { underline = true, fg = colors.cyan, sp = colors.cyan },
+	HighlightUrl = { underline = true, fg = colors.cyan, bg = colors.transparent_cyan, sp = colors.cyan },
 })
 
 for group, opts in pairs(groups) do
