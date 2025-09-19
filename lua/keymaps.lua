@@ -370,8 +370,7 @@ vim.keymap.set("t", "<A-l>", "<cmd>vertical resize +2<CR>", {silent = true})
 
 -- Different paste behaviour
 --vim.keymap.set('v', 'p', '"0p')
-vim.keymap.set('v', 'P', '"0p') -- maybe C-p instead?
-
+vim.keymap.set('v', '<C-P>', '"0p') -- keep pasted text with ctrl-p
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
