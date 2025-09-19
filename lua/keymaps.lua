@@ -25,7 +25,14 @@ if vim.g.neovide then
 end
 
 
-vim.keymap.set('n', '-', MiniFiles.open, {desc = 'Open parent directory'})
+vim.keymap.set('n', '-', function()
+	local MiniFiles = require("mini.files")
+	local _ = MiniFiles.close()
+	or MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+	vim.defer_fn(function()
+		MiniFiles.reveal_cwd()
+	end, 30)
+end, {desc = 'Open directory'})
 
 vim.keymap.set('v', 'i,', '<esc>T,vt,', {desc='inside commas'})
 vim.keymap.set('v', 'a,', '<esc>F,vf,', {desc='around commas'})
