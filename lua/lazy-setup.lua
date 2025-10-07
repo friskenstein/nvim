@@ -336,11 +336,11 @@ require('lazy').setup({
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
-          end
+          -- if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+          --   map('<leader>th', function()
+          --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+          --   end, '[T]oggle Inlay [H]ints')
+          -- end
         end,
       })
 
@@ -651,9 +651,10 @@ require('lazy').setup({
 			{ "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
 			{ "<leader>sb", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", desc = "Grep current file" },
 			{ "<leader>sc", function()
-				local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
-					"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord", "morning",
-					"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu", "retrobox" }
+					local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff",
+						"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord", "morning",
+						"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu",
+						"retrobox", "unokai" }
 				local target = vim.fn.getcompletion
 
 				---@diagnostic disable-next-line: duplicate-set-field

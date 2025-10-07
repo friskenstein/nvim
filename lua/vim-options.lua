@@ -10,6 +10,7 @@ vim.o.et = false
 vim.o.ts = 4
 vim.o.sw = 0 -- fallback to tabstop
 vim.o.wrap = false
+vim.o.showbreak = ' ↪  '
 
 vim.opt.laststatus = 3
 
