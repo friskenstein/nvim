@@ -117,7 +117,6 @@ require("which-key").add({
 	{"<leader>sl", "<cmd>Telescope resume<cr>", desc="Resume last search" },
 	{"<leader>ss", "<cmd>Telescope<cr>", desc="Select Telescope" },
 
-	{"<leader>a", "<cmd>AerialToggle<cr>", desc="Aerial" },
 
 -- 	A = {
 -- 		name = "AI copilot",
