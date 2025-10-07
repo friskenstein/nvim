@@ -324,7 +324,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@module"] = { link = "Include" },
 
 	-- tsx
-	["@tag.tsx"] = { fg = colors.red, bg = colors.transparent_red },
+	["@tag.tsx"] = { fg = colors.cyan, bg = colors.transparent_cyan },
 	["@constructor.tsx"] = { fg = colors.blue, bg = colors.transparent_blue },
 	["@tag.delimiter.tsx"] = { link = 'Delimiter' },
 

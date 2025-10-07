@@ -322,7 +322,7 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 	["@module"] = { link = "Include" },
 
 	-- tsx
-	["@tag.tsx"] = { fg = colors.red },
+	["@tag.tsx"] = { fg = colors.cyan },
 	["@constructor.tsx"] = { fg = colors.blue },
 	["@tag.delimiter.tsx"] = { link = 'Delimiter' },
 
@@ -514,6 +514,9 @@ local groups = vim.tbl_extend('error', statusline_groups, {
 
 	-- Links.
 	HighlightUrl = { underline = true, fg = colors.cyan, sp = colors.cyan },
+
+
+	NvimTreeIndentMarker = { fg = colors.deep },
 })
 
 for group, opts in pairs(groups) do
