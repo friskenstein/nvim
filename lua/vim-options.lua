@@ -73,3 +73,4 @@ vim.g.csv_delim=','
 
 -- disables built-in python.vim setting expandtab
 vim.g.python_recommended_style = 0
+vim.g.rust_recommended_style = false
