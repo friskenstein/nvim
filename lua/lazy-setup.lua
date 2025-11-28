@@ -44,6 +44,8 @@ require('lazy').setup({
 	'friskenstein/oxocarbon.nvim',
 	'friskenstein/horizon.nvim',
 	'friskenstein/palenightfall.nvim',
+	'scottmckendry/cyberdream.nvim',
+	'olimorris/onedarkpro.nvim',
 	'friskenstein/focus.nvim',
 	'projekt0n/github-nvim-theme',
 	'rose-pine/neovim',
