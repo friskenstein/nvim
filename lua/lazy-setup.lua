@@ -172,10 +172,13 @@ require('lazy').setup({
 		end
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require('colorizer').setup(nil, {names=false, mode='foreground'})
-		end
+		"catgoose/nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				names = false,
+				mode = "foreground",
+			},
+		},
 	},
 	-- Git related plugins
 	'tpope/vim-fugitive',
