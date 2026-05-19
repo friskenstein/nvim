@@ -38,8 +38,7 @@ require('lazy').setup({
 			vim.cmd.colorscheme 'cvlt-nyarlathotep'
 		end,
 	},
-	-- Colorschemes
-	--'friskenstein/tokyonight.nvim',
+	'mechatroner/rainbow_csv',
 	'friskenstein/lunar.nvim',
 	'friskenstein/poimandres.nvim',
 	'friskenstein/oxocarbon.nvim',
