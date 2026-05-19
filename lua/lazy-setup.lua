@@ -14,7 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.cmd.colorscheme 'chiaroscuro-modern'
 
 require('lazy').setup({
 
@@ -29,12 +28,14 @@ require('lazy').setup({
 			-- vim.cmd [[colorscheme witchcraft]]
 		end,
 	},
+	'friskenstein/tokyonight.nvim',
+	-- Colorschemes
 	{
-		"friskenstein/tokyonight.nvim",
+		'friskenstein/cvlt.nvim',
 		lazy = false,
 		priority = 1000,
 		config = function()
-			--vim.cmd.colorscheme 'tokyonight-night'
+			vim.cmd.colorscheme 'cvlt-nyarlathotep'
 		end,
 	},
 	-- Colorschemes
@@ -47,8 +48,7 @@ require('lazy').setup({
 	'scottmckendry/cyberdream.nvim',
 	'olimorris/onedarkpro.nvim',
 	'friskenstein/focus.nvim',
-	'projekt0n/github-nvim-theme',
-	'rose-pine/neovim',
+	-- 'projekt0n/github-nvim-theme',
 	{
 		"friskenstein/neovim-ayu",
 		config = function ()
