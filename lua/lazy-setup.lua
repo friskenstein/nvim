@@ -351,14 +351,7 @@ require('lazy').setup({
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
-        signs = vim.g.have_nerd_font and {
-          text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
-          },
-        } or {},
+        signs = require('diagnostic-signs').signs,
         virtual_text = {
           source = 'if_many',
           spacing = 2,
@@ -721,8 +714,8 @@ require('lazy').setup({
 				end
 			end, desc = "Minimap" },
 			{ "<leader>us", function()
-				vim.diagnostic.config({ signs = not vim.diagnostic.config().signs })
-				print("Diagnostic signs: " .. (vim.diagnostic.config().signs and "on" or "off"))
+				local enabled = require('diagnostic-signs').toggle()
+				print("Diagnostic signs: " .. (enabled and "on" or "off"))
 			end, desc = "Diagnostic signs" },
 			{ "<leader>uT", function ()
 				if vim.g.transparent_floats_toggle then

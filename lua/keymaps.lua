@@ -212,8 +212,8 @@ require("which-key").add({
 		print("Diagnostic virtual text: " .. (vim.diagnostic.config().virtual_text and "ON" or "OFF"))
 		end, desc="Diagnostic virtual text" },
 	{"<leader>us", function()
-		vim.diagnostic.config({ signs = not vim.diagnostic.config().signs })
-		print("Diagnostic signs: " .. (vim.diagnostic.config().signs and "on" or "off"))
+		local enabled = require('diagnostic-signs').toggle()
+		print("Diagnostic signs: " .. (enabled and "on" or "off"))
 		end, desc="Diagnostic signs" },
 	{"<leader>uu", function()
 		vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })

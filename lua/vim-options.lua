@@ -14,10 +14,7 @@ vim.o.showbreak = ' ↪  '
 
 vim.opt.laststatus = 3
 
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticError', numhl = 'DiagnosticError'})
-vim.fn.sign_define('DiagnosticSignWarn',  { text = '', texthl = 'DiagnosticWarn' , numhl = 'DiagnosticWarn' })
-vim.fn.sign_define('DiagnosticSignInfo',  { text = '', texthl = 'DiagnosticInfo' , numhl = 'DiagnosticInfo' })
-vim.fn.sign_define('DiagnosticSignHint',  { text = '󰛨', texthl = 'DiagnosticHint' , numhl = 'DiagnosticHint' })
+require('diagnostic-signs').enable()
 
 -- Set highlight on search
 vim.o.hlsearch = false
