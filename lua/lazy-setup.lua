@@ -806,7 +806,11 @@ require('lazy').setup({
 
 	{
 		'nvim-treesitter/nvim-treesitter',
+		branch = 'master',
 		build = ':TSUpdate',
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter-textobjects',
+		},
 		main = 'nvim-treesitter.configs',
 		opts = {
 			ensure_installed = {
