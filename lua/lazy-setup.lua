@@ -98,7 +98,7 @@ require('lazy').setup({
 		end,
 	},
 	{
-		'ggandor/leap.nvim',
+		url="https://codeberg.org/andyg/leap.nvim",
 		config = function()
 			-- needs to load after vim-surround
 			--require('leap').create_default_mappings()
