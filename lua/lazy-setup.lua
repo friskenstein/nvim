@@ -788,7 +788,6 @@ require('lazy').setup({
 	-- Fuzzy Finder (files, lsp, etc)
 	{
 		'nvim-telescope/telescope.nvim',
-		branch = '0.1.x',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			-- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -806,95 +805,24 @@ require('lazy').setup({
 
 	{
 		'nvim-treesitter/nvim-treesitter',
-		branch = 'master',
-		build = ':TSUpdate',
+		lazy = false,
+		build = function()
+			require('nvim-treesitter').install(require('treesitter-setup').parsers, { max_jobs = 1, summary = true }):wait(300000)
+			require('nvim-treesitter').update(nil, { max_jobs = 1, summary = true }):wait(300000)
+		end,
 		dependencies = {
-			'nvim-treesitter/nvim-treesitter-textobjects',
+			{
+				'nvim-treesitter/nvim-treesitter-textobjects',
+				branch = 'main',
+			},
 		},
-		main = 'nvim-treesitter.configs',
 		opts = {
-			ensure_installed = {
-				'bash',
-				'c',
-				'cpp',
-				'diff',
-				'go',
-				'html',
-				'javascript',
-				'lua',
-				'luadoc',
-				'markdown',
-				'markdown_inline',
-				'python',
-				'query',
-				'rust',
-				'tsx',
-				'typescript',
-				'vim',
-				'vimdoc',
-			},
-			auto_install = false,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = { 'ruby' },
-			},
-			indent = {
-				enable = true,
-				disable = { 'ruby' },
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = '<c-space>',
-					node_incremental = '<c-space>',
-					scope_incremental = '<c-s>',
-					node_decremental = '<M-space>',
-				},
-			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-					keymaps = {
-						['aa'] = '@parameter.outer',
-						['ia'] = '@parameter.inner',
-						['af'] = '@function.outer',
-						['if'] = '@function.inner',
-						['ac'] = '@class.outer',
-						['ic'] = '@class.inner',
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true,
-					goto_next_start = {
-						[']m'] = '@function.outer',
-						[']c'] = '@class.outer',
-					},
-					goto_next_end = {
-						[']M'] = '@function.outer',
-						[']C'] = '@class.outer',
-					},
-					goto_previous_start = {
-						['[m'] = '@function.outer',
-						['[c'] = '@class.outer',
-					},
-					goto_previous_end = {
-						['[M'] = '@function.outer',
-						['[C'] = '@class.outer',
-					},
-				},
-				swap = {
-					enable = true,
-					swap_next = {
-						['<leader>lSp'] = '@parameter.inner',
-					},
-					swap_previous = {
-						['<leader>lSP'] = '@parameter.inner',
-					},
-				},
-			},
+			install_dir = vim.fn.stdpath('data') .. '/site',
 		},
+		config = function(_, opts)
+			require('nvim-treesitter').setup(opts)
+			require('treesitter-setup').setup()
+		end,
 	},
 
 
