@@ -207,18 +207,18 @@ require("which-key").add({
 	{"<leader>ui", "<cmd>IBLToggle<cr>", desc="Indent Lines"},
 	{"<leader>uc", function() vim.o.cursorline = not vim.o.cursorline end, desc="Cursorline"},
 	{"<leader>ue", "<cmd>vert topleft split<cr><cmd>vert res 30<cr><cmd>ene<cr><C-w>l", desc="Pad left" },
--- 		v = { function()
--- 			vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
--- 			print("Diagnostic virtual text: " .. (vim.diagnostic.config().virtual_text and "ON" or "OFF"))
--- 			end, "Diagnostic virtual text" },
--- 		s = { function()
--- 			vim.diagnostic.config({ signs = not vim.diagnostic.config().signs })
--- 			print("Diagnostic signs: " .. (vim.diagnostic.config().signs and "on" or "off"))
--- 			end, "Diagnostic signs" },
--- 		u = { function()
--- 			vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })
--- 			print("Diagnostic underline: " .. (vim.diagnostic.config().underline and "on" or "off"))
--- 			end, "Diagnostic underline" },
+	{"<leader>uv", function()
+		vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+		print("Diagnostic virtual text: " .. (vim.diagnostic.config().virtual_text and "ON" or "OFF"))
+		end, desc="Diagnostic virtual text" },
+	{"<leader>us", function()
+		vim.diagnostic.config({ signs = not vim.diagnostic.config().signs })
+		print("Diagnostic signs: " .. (vim.diagnostic.config().signs and "on" or "off"))
+		end, desc="Diagnostic signs" },
+	{"<leader>uu", function()
+		vim.diagnostic.config({ underline = not vim.diagnostic.config().underline })
+		print("Diagnostic underline: " .. (vim.diagnostic.config().underline and "on" or "off"))
+		end, desc="Diagnostic underline" },
 	{"<leader>uw", function() vim.o.list = not vim.o.list end, desc="Whitespace On/Off" },
 -- 		W = { function()
 -- 			if vim.o.listchars == "space:⋅,tab:› ,trail:,nbsp:+" then
