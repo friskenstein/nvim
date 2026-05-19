@@ -85,7 +85,7 @@ require("which-key").add({
 	{ "<leader>sb", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({})})<cr>", desc = "Grep current file" },
 	{ "<leader>sB", "<cmd>Telescope git_branches<cr>", desc = "Git branches" },
 	{ "<leader>sc", function()
-			local builtins = { "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff", "habamax",
+			local builtins = { "unokai", "zellner", "torte", "slate", "shine", "ron", "quiet", "peachpuff", "habamax",
 				"pablo", "murphy", "lunaperche", "koehler", "industry", "evening", "elflord", "morning",
 				"desert", "delek", "default", "darkblue", "blue", "vim", "sorbet", "wildcharm", "zaibatsu", "retrobox" }
 			local target = vim.fn.getcompletion
